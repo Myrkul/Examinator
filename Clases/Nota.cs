@@ -37,5 +37,15 @@ namespace Examinator.Clases
 		{
 			return this.idAlumno;
 		}
+		
+		public void setIdNota(int idNota)
+		{
+			this.idNota = idNota;
+		}
+		
+		public int getIdNota()
+		{
+			return this.idNota;
+		}
     }
 }

@@ -117,7 +117,7 @@ namespace Examinator.Forms
                 int indice = rnd.Next(1, listaPreguntasTotales.Count);
                 listaPreguntasEscogidas.Add(listaPreguntasTotales[indice - 1]);
             }
-			Clases.Examen examen = new Clases.Examen(repo.findTemaByName(tema));
+			Clases.Examen examen = new Clases.Examen(repo.findTemaByName(tema);
 			examen = repo.insertExamen(examen);
 			MessageBox.Show("Generado.");
         }
@@ -126,7 +126,7 @@ namespace Examinator.Forms
         {
             comboTema.Items.Clear();
             List<String> listaTemas = new List<String>();
-            listaTemas = repo.cargarTemas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
+            listaTemas = repo.cargarTemas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem);
 
             for (int k = 0; k < listaTemas.Count; k++)
 			{

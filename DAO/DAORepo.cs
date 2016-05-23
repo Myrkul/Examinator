@@ -72,7 +72,7 @@ namespace Examinator.DAO
 		public DataTable actualizarTablaAsig()
 		{
             String cadena = "SELECT idAsignatura AS ID, Nombre FROM Asignaturas";
-            return execQueryTable(String cadena);
+            return execQueryTable(cadena);
 		}
 
         public DataTable actualizarTablaTemas(int idAsig)
@@ -80,7 +80,7 @@ namespace Examinator.DAO
             String cadena = "SELECT idTema AS ID, Nombre " + 
                             "FROM Temas " + 
                             "WHERE idAsignatura IS '" + idAsig + "'";
-            return execQueryTable(String cadena);
+            return execQueryTable(cadena);
 		}
 		
 		public Clases.Pregunta insertPregunta(Clases.Pregunta pregunta, List<Clases.Respuesta> respuestas)
@@ -127,13 +127,13 @@ namespace Examinator.DAO
                             "FROM Asignaturas A " +
                             "INNER JOIN Temas T ON A.idAsignatura = T.idAsignatura " +
                             "WHERE T.idAsignatura IS " + asignaturaActual;
-			return execQueryListString(String cadena);
+			return execQueryListString(cadena);
 		}
 		
 		public List<String> getAsignaturas()
 		{
 			String cadena = "SELECT Nombre FROM Asignaturas";
-            return execQueryListString(String cadena);
+            return execQueryListString(cadena);
 		}
 		
 		public List<int> getPreguntas(String tema, String asignatura)
@@ -145,13 +145,13 @@ namespace Examinator.DAO
                             "FROM Preguntas " +
                             "WHERE idAsignatura IS " + idAsig + " " + 
                             "AND idTema IS " + idTema;
-            return execQueryListInt(String cadena);
+            return execQueryListInt(cadena);
 		}
 		
 		public Clases.Clase insertClase(Clases.Clase clase)
 		{
 			String cadena = "INSERT INTO Clases (Nombre) VALUES ('" + clase.getNombre() + "')";
-            execNonQuery(String cadena);
+            execNonQuery(cadena);
 			clase.setIdClase(this.findClaseByName(clase.getNombre()));
 			return clase;
 		}
@@ -159,57 +159,57 @@ namespace Examinator.DAO
 		public Clases.Nota insertNota(Clases.Nota nota)
 		{
             String cadena = "INSERT INTO Notas (idAlumno, nota) VALUES ('" +nota.getIdAlumno() + "', '" + nota.getNota() + "')";
-			execNonQuery(String cadena);
+			execNonQuery(cadena);
             return nota;
 		}
 		
 		public Clases.Examen insertExamen(Clases.Examen examen)
 		{
-            String cadena = "INSERT INTO Examenes (idTema) VALUES ('" + examen.idTema + "')";
-			execNonQuery(String cadena);
+            String cadena = "INSERT INTO Examenes (idTema) VALUES ('" + examen.getIdTema() + "')";
+			execNonQuery(cadena);
             return examen;
 		}
 		
 		private int findClaseByName(String clase)
 		{
 			String cadena = "SELECT idClase FROM Clases WHERE Nombre IS '" + clase + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
 		}
 
         private int findAlumnoByName(String alumno)
         {
             String cadena = "SELECT idAlumno FROM Alumnos WHERE Nombre IS '" + alumno + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
         }
 		
 		private int findAsignaturaByName(String asignatura)
         {
             String cadena = "SELECT idAsignatura FROM Asignaturas WHERE Nombre IS '" + asignatura + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
         }
 
         public int findTemaByName(String tema)
         {
             String cadena = "SELECT idTema FROM Temas WHERE Nombre IS '" + tema + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
         }
 		
 		private int findRespuestaByTexto(String respuesta)
 		{
 			String cadena = "SELECT idRespuesta FROM Respuestas WHERE Texto IS '" + respuesta + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
 		}
 		
 		private int findPreguntaByEnunciado(String pregunta)
 		{
 			String cadena = "SELECT idPregunta FROM Preguntas WHERE Enunciado IS '" + pregunta + "'";
-            return execQueryInt(String cadena);
+            return execQueryInt(cadena);
 		}
 
         public DataTable actualizarTablaClases()
         {
             String cadena = "SELECT idClase AS ID, Nombre FROM Clases";
-            return execQueryTable(String cadena);
+            return execQueryTable(cadena);
         }
 
         public DataTable actualizarTablaAlumnos(int idClase)
@@ -218,7 +218,7 @@ namespace Examinator.DAO
                             "FROM Alumnos " +
                             "WHERE idClase IS '" + idClase + "' " +
                             "ORDER BY Apellidos";
-            return execQueryTable(String cadena);
+            return execQueryTable(cadena);
         }
 		
 		private void execNonQuery(String cadena)
