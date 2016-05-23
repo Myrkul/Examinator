@@ -125,11 +125,6 @@ namespace Examinator.Forms
                 return;
             }
 			int correcta = 0;
-            List<String> respuestas = new List<String>();
-			for(int k = 0; k < listaRespuestas.Count; k++)
-			{
-                respuestas.Add(listaRespuestas[k].Text);
-			}
 			for (int k = 0; k < listaLabels.Count; k++)
             {
                 if (listaRadioResp[k].Checked)
@@ -137,8 +132,15 @@ namespace Examinator.Forms
 					correcta = k+1;
                 }
             }
-            Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, respuestas, correcta, repo.findTemaByName(comboTema.SelectedItem.ToString()));
-			repo.insertPregunta(pregunta);
+            Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, repo.findTemaByName(comboTema.SelectedItem.ToString()));
+            List<Clases.Respuesta> respuestas = new List<Clases.Respuesta>();
+
+            for (int k = 0; k < listaRespuestas.Count; k++)
+            {
+                Clases.Respuesta respuestaTemporal = new Clases.Respuesta(listaRespuestas[k].Text);
+                respuestas.Add(respuestaTemporal);
+            }
+			repo.insertPregunta(pregunta, respuestas);
         }
 
         private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
