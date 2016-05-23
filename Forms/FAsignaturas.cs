@@ -51,7 +51,7 @@ namespace Examinator.Forms
 			int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
 			int idTema = Convert.ToInt32(tablaTemas.SelectedRows[0].Cells[0].Value);
 			
-            repo.deleteTema(idTema));
+            repo.deleteTema(idTema);
             tablaTemas.DataSource = repo.actualizarTablaTemas(idAsignatura);
         }
 
@@ -64,7 +64,7 @@ namespace Examinator.Forms
             }
 			Clases.Tema tema = new Clases.Tema(tNombreTema.Text, Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value));
             tema = repo.insertTema(tema);
-            tablaTemas.DataSource = repo.actualizarTablaTemas(tema.getIdAsig();
+            tablaTemas.DataSource = repo.actualizarTablaTemas(tema.getIdAsig());
         }
 
         private void tablaAsignaturas_SelectionChanged(object sender, EventArgs e)

@@ -40,12 +40,12 @@ namespace Examinator.Clases
 			return this.idTema;
 		}
 		
-		public void setId(int idPregunta)
+		public void setIdPregunta(int idPregunta)
 		{
 			this.idPregunta = idPregunta;
 		}
 		
-		public int getId()
+		public int getIdPregunta()
 		{
 			return this.idPregunta;
 		}
