@@ -31,7 +31,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aulasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionarAulasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.gestionarClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarAsignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,16 +65,18 @@
             // aulasToolStripMenuItem
             // 
             this.aulasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestionarAulasToolStripMenuItem});
+				this.gestionarClasesToolStripMenuItem});
             this.aulasToolStripMenuItem.Name = "aulasToolStripMenuItem";
             this.aulasToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.aulasToolStripMenuItem.Text = "Aulas";
+            this.aulasToolStripMenuItem.Text = "Clases";
             // 
             // gestionarAulasToolStripMenuItem
             // 
-            this.gestionarAulasToolStripMenuItem.Name = "gestionarAulasToolStripMenuItem";
-            this.gestionarAulasToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.gestionarAulasToolStripMenuItem.Text = "Gestionar Aulas";
+			this.gestionarClasesToolStripMenuItem.Name = "gestionarClasesToolStripMenuItem";
+			this.gestionarClasesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+			this.gestionarClasesToolStripMenuItem.Text = "Gestionar Clases";
+			this.gestionarClasesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClasesToolStripMenuItem_Click);
+
             // 
             // asignaturasToolStripMenuItem
             // 
@@ -90,20 +92,6 @@
             this.gestionarAsignaturasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.gestionarAsignaturasToolStripMenuItem.Text = "Gestionar Asignaturas";
             this.gestionarAsignaturasToolStripMenuItem.Click += new System.EventHandler(this.gestionarAsignaturasToolStripMenuItem_Click);
-            // 
-            // alumnosToolStripMenuItem
-            // 
-            this.alumnosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestionarAlumnosToolStripMenuItem});
-            this.alumnosToolStripMenuItem.Name = "alumnosToolStripMenuItem";
-            this.alumnosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.alumnosToolStripMenuItem.Text = "Alumnos";
-            // 
-            // gestionarAlumnosToolStripMenuItem
-            // 
-            this.gestionarAlumnosToolStripMenuItem.Name = "gestionarAlumnosToolStripMenuItem";
-            this.gestionarAlumnosToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.gestionarAlumnosToolStripMenuItem.Text = "Gestionar Alumnos";
             // 
             // btnGenerar
             // 
@@ -138,7 +126,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aulasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestionarAulasToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem gestionarClasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignaturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionarAsignaturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alumnosToolStripMenuItem;

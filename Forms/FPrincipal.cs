@@ -34,5 +34,10 @@ namespace Examinator
             Forms.FAsignaturas gestionAsig = new Forms.FAsignaturas();
             gestionAsig.Show();
         }
+		private void gestionarClasesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//Forms.FClases gestionClases = new Forms.FClases();
+			//gestionClases.Show();
+		}
     }
 }
