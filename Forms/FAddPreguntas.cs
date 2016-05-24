@@ -132,7 +132,7 @@ namespace Examinator.Forms
 					correcta = k+1;
                 }
             }
-            Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, repo.findTemaByName(comboTema.SelectedItem.ToString()));
+			Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, repo.findTemaByName(comboTema.SelectedItem.ToString()));
             List<Clases.Respuesta> respuestas = new List<Clases.Respuesta>();
 
             for (int k = 0; k < listaRespuestas.Count; k++)
@@ -141,6 +141,7 @@ namespace Examinator.Forms
                 respuestas.Add(respuestaTemporal);
             }
 			repo.insertPregunta(pregunta, respuestas);
+			MessageBox.Show ("Añadida");
         }
 
         private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)

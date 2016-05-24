@@ -87,8 +87,9 @@ namespace Examinator.DAO
 		{
 			String enunciado = pregunta.getEnunciado();
 			int correcta = pregunta.getCorrecta();
+			int idTema = pregunta.getTema();
 		
-			String cadena = "INSERT INTO Preguntas (Enunciado, idCorrecta) VALUES ('" + enunciado + "', '" + correcta + "')";
+			String cadena = "INSERT INTO Preguntas (Enunciado, idCorrecta, idTema) VALUES ('" + enunciado + "', '" + correcta + "', '" + idTema + "')";
 			this.execNonQuery(cadena);
             pregunta.setIdPregunta(this.findPreguntaByEnunciado(pregunta.getEnunciado()));
 
@@ -113,6 +114,14 @@ namespace Examinator.DAO
 			String cadena = "INSERT INTO Examenes_Notas (idExamen, idNota) VALUES ('" + examen.getIdExamen() + "', '" + nota.getIdNota() + "')";
 			this.execNonQuery(cadena);
 		}
+
+		private void updateRelacionExamenPreguntas(Clases.Examen examen, List<int> preguntas)
+		{
+			for (int k = 0; k < preguntas.Count; k++) {
+				String cadena = "INSERT INTO Examenes_Preguntas (idExamen, idPregunta) VALUES('" + examen.getIdExamen () + "', '" + preguntas[k] + "')";
+				this.execNonQuery (cadena);
+			}
+		}
 		
 		private void insertRespuesta(Clases.Respuesta respuesta)
 		{
@@ -136,15 +145,13 @@ namespace Examinator.DAO
             return execQueryListString(cadena);
 		}
 		
-		public List<int> getPreguntas(String tema, String asignatura)
+		public List<int> getPreguntas(String tema)
 		{
 			int idTema = this.findTemaByName(tema);
-			int idAsig = this.findAsignaturaByName(asignatura);
 			
 			String cadena = "SELECT idPregunta " +
                             "FROM Preguntas " +
-                            "WHERE idAsignatura IS " + idAsig + " " + 
-                            "AND idTema IS " + idTema;
+                            "WHERE idTema IS " + idTema;
             return execQueryListInt(cadena);
 		}
 		
@@ -163,10 +170,12 @@ namespace Examinator.DAO
             return nota;
 		}
 		
-		public Clases.Examen insertExamen(Clases.Examen examen)
+		public Clases.Examen insertExamen(Clases.Examen examen, List<int> preguntas)
 		{
             String cadena = "INSERT INTO Examenes (idTema) VALUES ('" + examen.getIdTema() + "')";
 			execNonQuery(cadena);
+			examen.setIdExamen (this.findLastID());
+			this.updateRelacionExamenPreguntas(examen, preguntas);
             return examen;
 		}
 		
@@ -220,6 +229,13 @@ namespace Examinator.DAO
                             "ORDER BY Apellidos";
             return execQueryTable(cadena);
         }
+
+		private int findLastID()
+		{
+			String cadena = "SELECT last_insert_rowid()";
+			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
+			return Convert.ToInt32(cmd.ExecuteScalar ());
+		}
 		
 		private void execNonQuery(String cadena)
 		{
@@ -245,6 +261,7 @@ namespace Examinator.DAO
 		
 		private List<int> execQueryListInt(String cadena)
 		{
+			Console.WriteLine (cadena);
 			List<int> lista = new List<int>();
 			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
             SQLiteDataReader rdr = cmd.ExecuteReader();

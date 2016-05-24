@@ -78,7 +78,7 @@ namespace Examinator.Forms
             {
                 valorPreguntaVacia = 1 / Convert.ToInt32(tVacias.Text);
             }
-            catch (DivideByZeroException a) 
+            catch (DivideByZeroException) 
             {
                 valorPreguntaVacia = 0;
             }
@@ -91,7 +91,7 @@ namespace Examinator.Forms
             {
                 valorPreguntaFallada = 1 / Convert.ToInt32(tIncorrectas.Text);
             }
-            catch (DivideByZeroException a) 
+            catch (DivideByZeroException) 
             {
                 valorPreguntaFallada = 0;
             }
@@ -100,11 +100,10 @@ namespace Examinator.Forms
                 MessageBox.Show("Introduzca un valor válido.");
                 return;
             }
-			
-            String asignatura = comboAsignatura.SelectedItem.ToString();
+
 			String tema = comboTema.SelectedItem.ToString();
 			
-			listaPreguntasTotales = repo.getPreguntas(asignatura, tema);
+			listaPreguntasTotales = repo.getPreguntas(tema);
 
             if (numPreguntas > listaPreguntasTotales.Count)
             {
@@ -118,7 +117,7 @@ namespace Examinator.Forms
                 listaPreguntasEscogidas.Add(listaPreguntasTotales[indice - 1]);
             }
 			Clases.Examen examen = new Clases.Examen(repo.findTemaByName(tema));
-			examen = repo.insertExamen(examen);
+			examen = repo.insertExamen(examen, listaPreguntasEscogidas);
 			MessageBox.Show("Generado.");
         }
 
