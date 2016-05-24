@@ -40,19 +40,25 @@ namespace Examinator.Forms
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-			int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
-			
-            repo.deleteAsignatura(idAsignatura);
-            tablaAsignaturas.DataSource = repo.actualizarTablaAsig();
+			try{
+				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
+				repo.deleteAsignatura (idAsignatura);
+				tablaAsignaturas.DataSource = repo.actualizarTablaAsig ();
+			}
+			catch(ArgumentOutOfRangeException){}
         }
 
         private void btnEliminarTema_Click(object sender, EventArgs e)
         {
-			int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
-			int idTema = Convert.ToInt32(tablaTemas.SelectedRows[0].Cells[0].Value);
-			
-            repo.deleteTema(idTema);
-            tablaTemas.DataSource = repo.actualizarTablaTemas(idAsignatura);
+			try{
+				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
+				int idTema = Convert.ToInt32(tablaTemas.SelectedRows[0].Cells[0].Value);
+
+				repo.deleteTema (idTema);
+				tablaTemas.DataSource = repo.actualizarTablaTemas (idAsignatura);
+			}
+			catch(ArgumentOutOfRangeException ex){}
+
         }
 
         private void btnAddTema_Click(object sender, EventArgs e)
