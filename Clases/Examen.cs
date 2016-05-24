@@ -25,5 +25,9 @@ namespace Examinator.Clases
 		{
 			return this.idTema;
 		}
+		public void setIdExamen(int idExamen)
+		{
+			this.idExamen = idExamen;
+		}
 	}
 }
