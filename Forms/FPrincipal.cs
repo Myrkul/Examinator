@@ -36,8 +36,8 @@ namespace Examinator
         }
 		private void gestionarClasesToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Forms.FClases gestionClases = new Forms.FClases();
-			//gestionClases.Show();
+			Forms.FClases gestionClases = new Forms.FClases();
+			gestionClases.Show();
 		}
     }
 }

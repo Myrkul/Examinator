@@ -64,6 +64,9 @@
     <Compile Include="Forms\FAsignaturas.Designer.cs">
       <DependentUpon>FAsignaturas.cs</DependentUpon>
     </Compile>
+	<Compile Include="Forms\FClases.Designer.cs">
+      <DependentUpon>FClases.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FGenerar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +74,9 @@
       <DependentUpon>FGenerar.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+	<Compile Include="Forms\FClases.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FPrincipal.Designer.cs">
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FAsignaturas.resx">
       <DependentUpon>FAsignaturas.cs</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Forms\FClases.resx">
+      <DependentUpon>FClases.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FGenerar.resx">
       <DependentUpon>FGenerar.cs</DependentUpon>
