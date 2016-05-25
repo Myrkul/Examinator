@@ -33,11 +33,13 @@ namespace Examinator.DAO
 			this.execNonQuery(cadena);
 		}
 
-		public List<int> getPreguntas(int idTema)
+		public List<int> getPreguntas(int idTema, int numRespuestas)
 		{
-			String cadena = "SELECT idPregunta " +
-				"FROM Preguntas " +
-				"WHERE idTema IS " + idTema;
+			String cadena = "SELECT p.idPregunta " +
+			                "FROM  Preguntas p INNER JOIN Preguntas_Respuestas pr ON pr.idPregunta = p.idPregunta " +
+			                "WHERE p.idTema IS '" + idTema + "'" +
+			                "GROUP BY pr.idPregunta " +
+			                "HAVING COUNT(pr.idPregunta) > '" + numRespuestas + "'";
 			return execQueryListInt(cadena);
 		}
 

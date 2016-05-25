@@ -110,7 +110,7 @@ namespace Examinator.Forms
 
 			String tema = comboTema.SelectedItem.ToString();
 			
-			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema));
+			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema), 1);
 
             if (numPreguntas > listaPreguntasTotales.Count)
             {
