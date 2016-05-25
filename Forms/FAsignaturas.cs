@@ -12,13 +12,16 @@ namespace Examinator.Forms
 {
     public partial class FAsignaturas : Form
     {
-        private DAO.DAORepo repo;
+		private DAO.Asignatura_DAO asignaturaDAO;
+		private DAO.Tema_DAO temaDAO;
 
         public FAsignaturas()
         {
             InitializeComponent();
-            repo = new DAO.DAORepo();
-            tablaAsignaturas.DataSource = repo.actualizarTablaAsig();
+			asignaturaDAO = new DAO.Asignatura_DAO();
+			temaDAO = new DAO.Tema_DAO();
+
+			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -34,16 +37,16 @@ namespace Examinator.Forms
                 return;
             }
             Clases.Asignatura asignatura = new Clases.Asignatura(tNombreAsig.Text);
-            asignatura = repo.insertAsignatura(asignatura);
-            tablaAsignaturas.DataSource = repo.actualizarTablaAsig();
+			asignatura = asignaturaDAO.insertAsignatura(asignatura);
+			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 			try{
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
-				repo.deleteAsignatura (idAsignatura);
-				tablaAsignaturas.DataSource = repo.actualizarTablaAsig ();
+				asignaturaDAO.deleteAsignatura (idAsignatura);
+				tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig ();
 			}
 			catch(ArgumentOutOfRangeException){}
         }
@@ -54,8 +57,8 @@ namespace Examinator.Forms
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
 				int idTema = Convert.ToInt32(tablaTemas.SelectedRows[0].Cells[0].Value);
 
-				repo.deleteTema (idTema);
-				tablaTemas.DataSource = repo.actualizarTablaTemas (idAsignatura);
+				temaDAO.deleteTema (idTema);
+				tablaTemas.DataSource = temaDAO.actualizarTablaTemas (idAsignatura);
 			}
 			catch(ArgumentOutOfRangeException ex){}
 
@@ -69,8 +72,8 @@ namespace Examinator.Forms
                 return;
             }
 			Clases.Tema tema = new Clases.Tema(tNombreTema.Text, Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value));
-            tema = repo.insertTema(tema);
-            tablaTemas.DataSource = repo.actualizarTablaTemas(tema.getIdAsig());
+			tema = temaDAO.insertTema(tema);
+			tablaTemas.DataSource = temaDAO.actualizarTablaTemas(tema.getIdAsig());
         }
 
         private void tablaAsignaturas_SelectionChanged(object sender, EventArgs e)
@@ -78,7 +81,7 @@ namespace Examinator.Forms
             if (tablaAsignaturas.SelectedRows.Count > 0)
             {
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
-                tablaTemas.DataSource = repo.actualizarTablaTemas(idAsignatura);
+				tablaTemas.DataSource = temaDAO.actualizarTablaTemas(idAsignatura);
             }
         }
     }

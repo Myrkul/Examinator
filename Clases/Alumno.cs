@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Examinator.Clases
 {
-	class Alumno
+	public class Alumno
 	{
 		String nombre;
 		String apellidos;

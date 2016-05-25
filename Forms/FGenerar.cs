@@ -12,13 +12,20 @@ namespace Examinator.Forms
 {
     public partial class FGenerar : Form
     {
-        private DAO.DAORepo repo;
+		private DAO.Tema_DAO temaDAO;
+		private DAO.ExamenNota_DAO examenNotaDAO;
+		private DAO.Asignatura_DAO asignaturaDAO;
+		private DAO.PreguntaRespuesta_DAO preguntaRespuestaDAO;
 
         public FGenerar()
         {
             InitializeComponent();
-            repo = new DAO.DAORepo();
-            List<String> listaAsig = repo.getAsignaturas();
+			temaDAO = new DAO.Tema_DAO ();
+			examenNotaDAO = new DAO.ExamenNota_DAO ();
+			asignaturaDAO = new DAO.Asignatura_DAO ();
+			preguntaRespuestaDAO = new DAO.PreguntaRespuesta_DAO ();
+
+			List<String> listaAsig = asignaturaDAO.getAsignaturas();
 
             for (int k = 0; k < listaAsig.Count; k++)
 			{
@@ -103,7 +110,7 @@ namespace Examinator.Forms
 
 			String tema = comboTema.SelectedItem.ToString();
 			
-			listaPreguntasTotales = repo.getPreguntas(tema);
+			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema));
 
             if (numPreguntas > listaPreguntasTotales.Count)
             {
@@ -116,8 +123,8 @@ namespace Examinator.Forms
                 int indice = rnd.Next(1, listaPreguntasTotales.Count);
                 listaPreguntasEscogidas.Add(listaPreguntasTotales[indice - 1]);
             }
-			Clases.Examen examen = new Clases.Examen(repo.findTemaByName(tema));
-			examen = repo.insertExamen(examen, listaPreguntasEscogidas);
+			Clases.Examen examen = new Clases.Examen(temaDAO.findTemaByName(tema));
+			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas);
 			MessageBox.Show("Generado.");
         }
 
@@ -125,7 +132,7 @@ namespace Examinator.Forms
         {
             comboTema.Items.Clear();
             List<String> listaTemas = new List<String>();
-			listaTemas = repo.cargarTemas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
+			listaTemas = asignaturaDAO.cargarAsignaturas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
 
             for (int k = 0; k < listaTemas.Count; k++)
 			{

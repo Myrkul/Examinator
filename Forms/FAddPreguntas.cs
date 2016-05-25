@@ -16,14 +16,19 @@ namespace Examinator.Forms
         List<Label> listaLabels = new List<Label>();
         List<TextBox> listaRespuestas = new List<TextBox>();
         List<RadioButton> listaRadioResp = new List<RadioButton>();
-        private DAO.DAORepo repo;
-		
+
+		private DAO.Asignatura_DAO asignaturaDAO;
+		private DAO.PreguntaRespuesta_DAO preguntaDAO;
+		private DAO.Tema_DAO temaDAO;
+
         public FAddPreguntas()
         {
             InitializeComponent();
-            repo = new DAO.DAORepo();
+			asignaturaDAO = new DAO.Asignatura_DAO();
+			preguntaDAO = new DAO.PreguntaRespuesta_DAO();
+			temaDAO = new DAO.Tema_DAO();
 
-            List<String> listaAsig = repo.getAsignaturas();
+			List<String> listaAsig = asignaturaDAO.getAsignaturas();
 
             for (int k = 0; k < listaAsig.Count; k++)
             {
@@ -132,7 +137,7 @@ namespace Examinator.Forms
 					correcta = k+1;
                 }
             }
-			Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, repo.findTemaByName(comboTema.SelectedItem.ToString()));
+			Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, temaDAO.findTemaByName(comboTema.SelectedItem.ToString()));
             List<Clases.Respuesta> respuestas = new List<Clases.Respuesta>();
 
             for (int k = 0; k < listaRespuestas.Count; k++)
@@ -140,7 +145,7 @@ namespace Examinator.Forms
                 Clases.Respuesta respuestaTemporal = new Clases.Respuesta(listaRespuestas[k].Text);
                 respuestas.Add(respuestaTemporal);
             }
-			repo.insertPregunta(pregunta, respuestas);
+			preguntaDAO.insertPregunta(pregunta, respuestas);
 			MessageBox.Show ("Añadida");
         }
 
@@ -148,7 +153,7 @@ namespace Examinator.Forms
         {
             comboTema.Items.Clear();
 			List<String> listaTemas = new List<String>();
-            listaTemas = repo.cargarTemas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
+			listaTemas = asignaturaDAO.cargarAsignaturas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
 			
 			for(int k=0; k< listaTemas.Count;k++)
 			{

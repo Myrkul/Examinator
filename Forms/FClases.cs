@@ -12,22 +12,26 @@ namespace Examinator.Forms
 {
     public partial class FClases : Form
     {
-        private DAO.DAORepo repo;
+		private DAO.Alumno_DAO alumnoDAO;
+		private DAO.Clase_DAO claseDAO;
+
         public FClases()
         {
             InitializeComponent();
-            repo = new DAO.DAORepo();
+			claseDAO = new DAO.Clase_DAO ();
+			alumnoDAO = new DAO.Alumno_DAO ();
+
             this.actualizarTablaClases();
         }
 
         private void actualizarTablaClases()
         {
-            tablaClases.DataSource = repo.actualizarTablaClases();
+			tablaClases.DataSource = claseDAO.actualizarTablaClases();
         }
 
         private void actualizarTablaAlumnos()
         {
-            tablaAlumnos.DataSource = repo.actualizarTablaAlumnos(Convert.ToInt32(tablaClases.SelectedRows[0].Cells[0].Value));
+			tablaAlumnos.DataSource = alumnoDAO.actualizarTablaAlumnos(Convert.ToInt32(tablaClases.SelectedRows[0].Cells[0].Value));
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -43,19 +47,19 @@ namespace Examinator.Forms
                 return;
             }
             Clases.Clase clase = new Clases.Clase(tNombreClase.Text);
-            repo.insertClase(clase);
+			claseDAO.insertClase(clase);
             this.actualizarTablaClases();
         }
 
         private void btnEliminarClase_Click(object sender, EventArgs e)
         {
-            repo.deleteClase(Convert.ToInt32(tablaClases.SelectedRows[0].Cells[0].Value));
+			claseDAO.deleteClase(Convert.ToInt32(tablaClases.SelectedRows[0].Cells[0].Value));
             this.actualizarTablaClases();
         }
 
         private void btnEliminarAlumno_Click(object sender, EventArgs e)
         {
-            repo.deleteAlumno(Convert.ToInt32(tablaAlumnos.SelectedRows[0].Cells[0].Value));
+			alumnoDAO.deleteAlumno(Convert.ToInt32(tablaAlumnos.SelectedRows[0].Cells[0].Value));
             actualizarTablaAlumnos();
         }
 
@@ -72,8 +76,8 @@ namespace Examinator.Forms
                 return;
             }
             Clases.Alumno alumno = new Clases.Alumno(tNombreAlumno.Text, tApellidosAlumno.Text, Convert.ToInt32(tablaClases.SelectedRows[0].Cells[0].Value));
-            repo.insertAlumno(alumno);
-			tablaAlumnos.DataSource = repo.actualizarTablaAlumnos(alumno.getIdClase());
+			alumnoDAO.insertAlumno(alumno);
+			tablaAlumnos.DataSource = alumnoDAO.actualizarTablaAlumnos(alumno.getIdClase());
         }
 
         private void tablaClases_SelectionChanged(object sender, EventArgs e)
