@@ -27,6 +27,12 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+		public String findClaseById(int id)
+		{
+			String cadena = "SELECT Nombre FROM Clases WHERE idClase IS " + id;
+			return execQueryString(cadena);
+		}
+
 		public DataTable actualizarTablaClases()
 		{
 			String cadena = "SELECT idClase AS ID, Nombre FROM Clases";

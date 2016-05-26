@@ -35,6 +35,14 @@ namespace Examinator.DAO
 			return rdr.GetInt32(0);
 		}
 
+		protected String execQueryString(String cadena)
+		{
+			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
+			SQLiteDataReader rdr = cmd.ExecuteReader();
+			rdr.Read();
+			return rdr.GetString(0);
+		}
+
 		protected DataTable execQueryTable(String cadena)
 		{
 			SQLiteDataAdapter da = new SQLiteDataAdapter(cadena, conn);
@@ -45,7 +53,6 @@ namespace Examinator.DAO
 
 		protected List<int> execQueryListInt(String cadena)
 		{
-			Console.WriteLine (cadena);
 			List<int> lista = new List<int>();
 			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
 			SQLiteDataReader rdr = cmd.ExecuteReader();

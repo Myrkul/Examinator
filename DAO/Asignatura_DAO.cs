@@ -40,6 +40,12 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+		public String findAsignaturaById(int id)
+		{
+			String cadena = "SELECT Nombre FROM Asignaturas WHERE idAsignatura IS " + id;
+			return execQueryString(cadena);
+		}
+
 		public List<String> cargarAsignaturas(String nombreAsig)
 		{
 			int asignaturaActual = this.findAsignaturaByName(nombreAsig);

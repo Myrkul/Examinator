@@ -37,9 +37,9 @@ namespace Examinator.DAO
 		{
 			String cadena = "SELECT p.idPregunta " +
 			                "FROM  Preguntas p INNER JOIN Preguntas_Respuestas pr ON pr.idPregunta = p.idPregunta " +
-			                "WHERE p.idTema IS '" + idTema + "'" +
+			                "WHERE p.idTema IS '" + idTema + "' " +
 			                "GROUP BY pr.idPregunta " +
-			                "HAVING COUNT(pr.idPregunta) > '" + numRespuestas + "'";
+			                "HAVING COUNT(pr.idPregunta) > " + numRespuestas + "";
 			return execQueryListInt(cadena);
 		}
 
@@ -49,10 +49,39 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+		public String findRespuestaById(int id)
+		{
+			String cadena = "SELECT Texto FROM Respuestas WHERE idRespuesta IS '" + id + "'";
+			return execQueryString(cadena);
+		}
+
+		public List<int> getRespuestasPregunta(int id)
+		{
+			String cadena = "SELECT r.idRespuesta " +
+			                "FROM Respuestas r INNER JOIN Preguntas_Respuestas pr ON r.idRespuesta = pr.idRespuesta " +
+			                "WHERE pr.idPregunta IS " + id;
+			Console.WriteLine ("findRespuestaById: " + cadena);
+			return execQueryListInt(cadena);
+		}
+
 		private int findPreguntaByEnunciado(String pregunta)
 		{
 			String cadena = "SELECT idPregunta FROM Preguntas WHERE Enunciado IS '" + pregunta + "'";
 			return execQueryInt(cadena);
+		}
+
+		public String findPreguntaById(int id)
+		{
+			String cadena = "SELECT Enunciado FROM Preguntas WHERE idPregunta IS " + id;
+			return execQueryString(cadena);
+		}
+
+		public List<int> getPreguntasExamen(int idExamen)
+		{
+			String cadena = "SELECT p.idPregunta " +
+				"FROM Preguntas p INNER JOIN Examenes_Preguntas ep ON p.idPregunta = ep.idPregunta " +
+				"WHERE ep.idExamen IS " + idExamen;
+			return execQueryListInt(cadena);
 		}
 	}
 }

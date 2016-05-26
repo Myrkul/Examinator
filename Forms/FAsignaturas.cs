@@ -60,7 +60,7 @@ namespace Examinator.Forms
 				temaDAO.deleteTema (idTema);
 				tablaTemas.DataSource = temaDAO.actualizarTablaTemas (idAsignatura);
 			}
-			catch(ArgumentOutOfRangeException ex){}
+			catch(ArgumentOutOfRangeException){}
 
         }
 

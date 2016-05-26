@@ -35,6 +35,12 @@ namespace Examinator.DAO
 			String cadena = "SELECT idTema FROM Temas WHERE Nombre IS '" + tema + "'";
 			return execQueryInt(cadena);
 		}
+
+		public String findTemaById(int id)
+		{
+			String cadena = "SELECT Nombre FROM Temas WHERE idTema IS " + id;
+			return execQueryString(cadena);
+		}
 	}
 }
 

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.IO;
 
 namespace Examinator.Forms
 {
@@ -109,22 +112,27 @@ namespace Examinator.Forms
             }
 
 			String tema = comboTema.SelectedItem.ToString();
-			
+
 			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema), 1);
 
+			Console.WriteLine (listaPreguntasTotales.Count);
             if (numPreguntas > listaPreguntasTotales.Count)
             {
                 MessageBox.Show("No hay tantas preguntas guardadas.");
                 return;
             }
             Random rnd = new Random();
-            for (int i = 0; i < listaPreguntasTotales.Count; i++)
-            {
-                int indice = rnd.Next(1, listaPreguntasTotales.Count);
-                listaPreguntasEscogidas.Add(listaPreguntasTotales[indice - 1]);
-            }
+			int k = 0;
+			do {
+				int indice = rnd.Next (1, listaPreguntasTotales.Count);
+				if(!listaPreguntasEscogidas.Contains(listaPreguntasTotales [indice - 1])) {
+					listaPreguntasEscogidas.Add (listaPreguntasTotales [indice - 1]);
+					k++;
+				}
+			} while(numPreguntas > k);
 			Clases.Examen examen = new Clases.Examen(temaDAO.findTemaByName(tema));
 			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas);
+			this.generarPDF (examen, comboAsignatura.SelectedItem.ToString(), comboTema.SelectedItem.ToString(), listaPreguntasEscogidas, 1);
 			MessageBox.Show("Generado.");
         }
 
@@ -139,5 +147,90 @@ namespace Examinator.Forms
 				comboTema.Items.Add(listaTemas[k]);
 			}
         }
+
+		private void generarPDF(Clases.Examen examen, String nombreAsignatura, String nombreTema, List<int> listaPreguntas, int numRespuestas)
+		{
+			Document doc = new Document(PageSize.LETTER);
+
+			PdfWriter writer = PdfWriter.GetInstance(doc,
+				new FileStream(@"C:\Examen - " + nombreAsignatura + " - " + nombreTema + ".pdf", FileMode.Create));
+			
+			doc.AddTitle("Examen tema: " + nombreTema);
+
+			// Abrimos el archivo
+			doc.Open();
+
+			// Creamos el tipo de Font que vamos utilizar
+			iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+
+			// Escribimos el encabezamiento en el documento
+			doc.Add(new Paragraph(nombreAsignatura));
+			doc.Add(Chunk.NEWLINE);
+			doc.Add(new Paragraph("Examen tema: " + nombreTema));
+
+			// Creamos una tabla que contendrá el nombre, apellido y país
+			// de nuestros visitante.
+			List<String> listaEnunciados = new List<String> ();
+
+			for (int k = 0; k < listaPreguntas.Count; k++) {
+				listaEnunciados.Add(preguntaRespuestaDAO.findPreguntaById(listaPreguntas[k]));
+			}
+			PdfPTable tblPrueba = new PdfPTable(2);
+			tblPrueba.WidthPercentage = 100;
+
+			// Configuramos el título de las columnas de la tabla
+			PdfPCell clPreguntas = new PdfPCell();
+			clPreguntas.BorderWidth = 1;
+			clPreguntas.BorderWidthBottom = 0.75f;
+
+			// Configuramos el título de las columnas de la tabla
+			PdfPCell clRespuestas = new PdfPCell();
+			clRespuestas.BorderWidth = 1;
+			clRespuestas.BorderWidthBottom = 0.75f;
+
+			// Añadimos las celdas a la tabla
+			tblPrueba.AddCell(clPreguntas);
+			tblPrueba.AddCell(clRespuestas);
+
+			for(int i=0; i<listaPreguntas.Count; i++){
+				Console.WriteLine(listaPreguntas [i]);
+			}
+			Random rng = new Random(); 
+			for (int k = 0; k < listaPreguntas.Count; k++) {
+				// Llenamos la tabla con información
+				clPreguntas = new PdfPCell (new Phrase (listaEnunciados[k], _standardFont));
+				clPreguntas.BorderWidth = 0;
+				tblPrueba.AddCell(clPreguntas);
+				List<int> listaRespuestas = preguntaRespuestaDAO.getRespuestasPregunta (listaPreguntas [k]);
+
+				this.barajar (listaRespuestas, rng);
+
+				String cadenaRespuestas = "";
+				for(int i=0; i<listaRespuestas.Count; i++){
+					cadenaRespuestas += preguntaRespuestaDAO.findRespuestaById (listaRespuestas [i]) + "\n";
+				}
+				clRespuestas = new PdfPCell (new Phrase (cadenaRespuestas, _standardFont));
+				clRespuestas.BorderWidth = 0;
+				tblPrueba.AddCell(clRespuestas);
+			}
+
+			// Finalmente, añadimos la tabla al documento PDF y cerramos el documento
+			doc.Add(tblPrueba);
+
+			doc.Close();
+			writer.Close();
+		}
+
+		private void barajar(List<int> list, Random rng)  
+		{
+			int n = list.Count;  
+			while (n > 1) {  
+				n--;  
+				int k = rng.Next(n + 1);  
+				int value = list[k];  
+				list[k] = list[n];  
+				list[n] = value;  
+			}  
+		}
     }
 }
