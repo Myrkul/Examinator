@@ -115,7 +115,6 @@ namespace Examinator.Forms
 
 			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema), 1);
 
-			Console.WriteLine (listaPreguntasTotales.Count);
             if (numPreguntas > listaPreguntasTotales.Count)
             {
                 MessageBox.Show("No hay tantas preguntas guardadas.");
@@ -192,9 +191,6 @@ namespace Examinator.Forms
 			tblPrueba.AddCell(clPreguntas);
 			tblPrueba.AddCell(clRespuestas);
 
-			for(int i=0; i<listaPreguntas.Count; i++){
-				Console.WriteLine(listaPreguntas [i]);
-			}
 			Random rng = new Random(); 
 			for (int k = 0; k < listaPreguntas.Count; k++) {
 				// Llenamos la tabla con información

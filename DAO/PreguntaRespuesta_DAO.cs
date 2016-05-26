@@ -60,7 +60,6 @@ namespace Examinator.DAO
 			String cadena = "SELECT r.idRespuesta " +
 			                "FROM Respuestas r INNER JOIN Preguntas_Respuestas pr ON r.idRespuesta = pr.idRespuesta " +
 			                "WHERE pr.idPregunta IS " + id;
-			Console.WriteLine ("findRespuestaById: " + cadena);
 			return execQueryListInt(cadena);
 		}
 
