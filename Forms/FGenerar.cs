@@ -53,6 +53,7 @@ namespace Examinator.Forms
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             int numPreguntas;
+            int numRespuestas;
             int valorPreguntaAcertada;
             int valorPreguntaFallada;
             int valorPreguntaVacia;
@@ -86,6 +87,15 @@ namespace Examinator.Forms
             }
             try
             {
+                numRespuestas = Convert.ToInt32(tNumRespuestas.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Introduzca un número válido de respuestas.");
+                return;
+            }
+            try
+            {
                 valorPreguntaVacia = 1 / Convert.ToInt32(tVacias.Text);
             }
             catch (DivideByZeroException) 
@@ -113,7 +123,7 @@ namespace Examinator.Forms
 
 			String tema = comboTema.SelectedItem.ToString();
 
-			listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema), 1);
+            listaPreguntasTotales = preguntaRespuestaDAO.getPreguntas(temaDAO.findTemaByName(tema), numRespuestas);
 
             if (numPreguntas > listaPreguntasTotales.Count)
             {
@@ -131,7 +141,7 @@ namespace Examinator.Forms
 			} while(numPreguntas > k);
 			Clases.Examen examen = new Clases.Examen(temaDAO.findTemaByName(tema));
 			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas);
-			this.generarPDF (examen, comboAsignatura.SelectedItem.ToString(), comboTema.SelectedItem.ToString(), listaPreguntasEscogidas, 1);
+            this.generarPDF(examen, comboAsignatura.SelectedItem.ToString(), comboTema.SelectedItem.ToString(), listaPreguntasEscogidas, numRespuestas);
 			MessageBox.Show("Generado.");
         }
 

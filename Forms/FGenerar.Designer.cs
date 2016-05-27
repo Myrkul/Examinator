@@ -43,6 +43,8 @@
             this.tVacias = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tNumRespuestas = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 132);
+            this.label3.Location = new System.Drawing.Point(13, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 13);
             this.label3.TabIndex = 32;
@@ -111,7 +113,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 167);
+            this.label4.Location = new System.Drawing.Point(13, 176);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 13);
             this.label4.TabIndex = 33;
@@ -119,7 +121,7 @@
             // 
             // tNumero
             // 
-            this.tNumero.Location = new System.Drawing.Point(143, 125);
+            this.tNumero.Location = new System.Drawing.Point(143, 97);
             this.tNumero.Name = "tNumero";
             this.tNumero.Size = new System.Drawing.Size(95, 20);
             this.tNumero.TabIndex = 34;
@@ -127,7 +129,7 @@
             // 
             // tIncorrectas
             // 
-            this.tIncorrectas.Location = new System.Drawing.Point(143, 164);
+            this.tIncorrectas.Location = new System.Drawing.Point(143, 173);
             this.tIncorrectas.Name = "tIncorrectas";
             this.tIncorrectas.Size = new System.Drawing.Size(95, 20);
             this.tIncorrectas.TabIndex = 35;
@@ -137,7 +139,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(244, 167);
+            this.label6.Location = new System.Drawing.Point(244, 176);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(137, 13);
             this.label6.TabIndex = 36;
@@ -146,7 +148,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 201);
+            this.label7.Location = new System.Drawing.Point(13, 210);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 13);
             this.label7.TabIndex = 37;
@@ -154,7 +156,7 @@
             // 
             // tVacias
             // 
-            this.tVacias.Location = new System.Drawing.Point(143, 198);
+            this.tVacias.Location = new System.Drawing.Point(143, 207);
             this.tVacias.Name = "tVacias";
             this.tVacias.Size = new System.Drawing.Size(95, 20);
             this.tVacias.TabIndex = 38;
@@ -164,7 +166,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(244, 201);
+            this.label8.Location = new System.Drawing.Point(244, 210);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(147, 13);
             this.label8.TabIndex = 39;
@@ -172,7 +174,7 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(160, 251);
+            this.btnGenerar.Location = new System.Drawing.Point(160, 267);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(111, 81);
             this.btnGenerar.TabIndex = 40;
@@ -180,11 +182,29 @@
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 139);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(121, 13);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Número de Respuestas:";
+            // 
+            // tNumRespuestas
+            // 
+            this.tNumRespuestas.Location = new System.Drawing.Point(143, 136);
+            this.tNumRespuestas.Name = "tNumRespuestas";
+            this.tNumRespuestas.Size = new System.Drawing.Size(95, 20);
+            this.tNumRespuestas.TabIndex = 42;
+            // 
             // FGenerar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 344);
+            this.ClientSize = new System.Drawing.Size(431, 360);
+            this.Controls.Add(this.tNumRespuestas);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tVacias);
@@ -224,5 +244,7 @@
         private System.Windows.Forms.TextBox tVacias;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tNumRespuestas;
     }
 }
