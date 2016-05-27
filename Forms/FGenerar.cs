@@ -174,8 +174,10 @@ namespace Examinator.Forms
 
 			// Escribimos el encabezamiento en el documento
 			doc.Add(new Paragraph(nombreAsignatura));
-			doc.Add(Chunk.NEWLINE);
 			doc.Add(new Paragraph("Examen tema: " + nombreTema));
+			doc.Add(Chunk.NEWLINE);
+			doc.Add(new Paragraph("Nombre: " ));
+			doc.Add(Chunk.NEWLINE);
 
 			// Creamos una tabla que contendrá el nombre, apellido y país
 			// de nuestros visitante.
@@ -207,13 +209,13 @@ namespace Examinator.Forms
 				clPreguntas = new PdfPCell (new Phrase (listaEnunciados[k], _standardFont));
 				clPreguntas.BorderWidth = 0;
 				tblPrueba.AddCell(clPreguntas);
-				List<int> listaRespuestas = preguntaRespuestaDAO.getRespuestasPregunta (listaPreguntas [k]);
+				List<int> listaRespuestas = preguntaRespuestaDAO.getRespuestasPregunta (listaPreguntas [k], numRespuestas);
 
 				this.barajar (listaRespuestas, rng);
 
 				String cadenaRespuestas = "";
 				for(int i=0; i<listaRespuestas.Count; i++){
-					cadenaRespuestas += preguntaRespuestaDAO.findRespuestaById (listaRespuestas [i]) + "\n";
+					cadenaRespuestas += preguntaRespuestaDAO.findRespuestaById (listaRespuestas [i]) + "\n\n\n";
 				}
 				clRespuestas = new PdfPCell (new Phrase (cadenaRespuestas, _standardFont));
 				clRespuestas.BorderWidth = 0;

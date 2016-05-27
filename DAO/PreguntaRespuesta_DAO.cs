@@ -55,12 +55,34 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
-		public List<int> getRespuestasPregunta(int id)
+		public List<int> getRespuestasPregunta(int id, int numRespuestas)
 		{
-			String cadena = "SELECT r.idRespuesta " +
+			String cadena = "SELECT idCorrecta" +
+				" FROM Preguntas" +
+				" WHERE idPregunta IS " + id;
+			
+			int correcta = execQueryInt (cadena);
+
+			cadena = "SELECT r.idRespuesta " +
 			                "FROM Respuestas r INNER JOIN Preguntas_Respuestas pr ON r.idRespuesta = pr.idRespuesta " +
 			                "WHERE pr.idPregunta IS " + id;
-			return execQueryListInt(cadena);
+			
+			List<int> listaTotalRespuestas = execQueryListInt (cadena);
+			List<int> listaFinalRespuestas = new List<int> ();
+			listaFinalRespuestas.Add (listaTotalRespuestas [correcta - 1]);
+
+			Random rng = new Random ();
+			int k = 0;
+			do {
+				int indice = rng.Next(0, listaTotalRespuestas.Count - 1);
+				if(!listaFinalRespuestas.Contains(listaTotalRespuestas[indice]))
+				{
+					k++;
+					listaFinalRespuestas.Add(listaTotalRespuestas[indice]);
+				}
+			} while(k < numRespuestas - 1);
+
+			return listaFinalRespuestas;
 		}
 
 		private int findPreguntaByEnunciado(String pregunta)
