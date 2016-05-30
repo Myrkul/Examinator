@@ -65,11 +65,6 @@ namespace Examinator.Forms
                 MessageBox.Show("Debes seleccionar la asignatura.");
                 return;
             }
-   /*         if (comboTema.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debes seleccionar el tema.");
-                return;
-            }*/
             if(tNumero.Text.Equals("") || tNumero.Text.Equals("0"))
             {
                 MessageBox.Show("Introduzca el número de preguntas.");
@@ -166,21 +161,16 @@ namespace Examinator.Forms
 			
 			doc.AddTitle("Examen tema: " + nombreTema);
 
-			// Abrimos el archivo
 			doc.Open();
 
-			// Creamos el tipo de Font que vamos utilizar
 			iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
-			// Escribimos el encabezamiento en el documento
 			doc.Add(new Paragraph(nombreAsignatura));
 			doc.Add(new Paragraph("Examen tema: " + nombreTema));
 			doc.Add(Chunk.NEWLINE);
 			doc.Add(new Paragraph("Nombre: " ));
 			doc.Add(Chunk.NEWLINE);
 
-			// Creamos una tabla que contendrá el nombre, apellido y país
-			// de nuestros visitante.
 			List<String> listaEnunciados = new List<String> ();
 
 			for (int k = 0; k < listaPreguntas.Count; k++) {
@@ -189,23 +179,19 @@ namespace Examinator.Forms
 			PdfPTable tblPrueba = new PdfPTable(2);
 			tblPrueba.WidthPercentage = 100;
 
-			// Configuramos el título de las columnas de la tabla
 			PdfPCell clPreguntas = new PdfPCell();
 			clPreguntas.BorderWidth = 1;
 			clPreguntas.BorderWidthBottom = 0.75f;
 
-			// Configuramos el título de las columnas de la tabla
 			PdfPCell clRespuestas = new PdfPCell();
 			clRespuestas.BorderWidth = 1;
 			clRespuestas.BorderWidthBottom = 0.75f;
 
-			// Añadimos las celdas a la tabla
 			tblPrueba.AddCell(clPreguntas);
 			tblPrueba.AddCell(clRespuestas);
 
 			Random rng = new Random(); 
 			for (int k = 0; k < listaPreguntas.Count; k++) {
-				// Llenamos la tabla con información
 				clPreguntas = new PdfPCell (new Phrase (listaEnunciados[k], _standardFont));
 				clPreguntas.BorderWidth = 0;
 				tblPrueba.AddCell(clPreguntas);
@@ -222,7 +208,6 @@ namespace Examinator.Forms
 				tblPrueba.AddCell(clRespuestas);
 			}
 
-			// Finalmente, añadimos la tabla al documento PDF y cerramos el documento
 			doc.Add(tblPrueba);
 
 			doc.Close();
