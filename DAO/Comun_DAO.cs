@@ -16,7 +16,7 @@ namespace Examinator.DAO
 		{
 			temp = new DirectoryInfo(Directory.GetCurrentDirectory());
 			directorio = temp.Parent.Parent;
-			String conexion = "Data Source=" + directorio.FullName + "\\examinator.db3;New=True;Compress=True;";
+			String conexion = "Data Source=" + directorio.FullName + "\\examinator.db3;Synchronous=Full;Compress=True;";
 			conn = new SQLiteConnection(conexion);
 			conn.Open();
 		}
