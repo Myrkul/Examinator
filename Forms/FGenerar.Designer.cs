@@ -73,6 +73,7 @@
             this.comboAsignatura.Size = new System.Drawing.Size(215, 21);
             this.comboAsignatura.TabIndex = 2;
             this.comboAsignatura.SelectedIndexChanged += new System.EventHandler(this.comboAsignatura_SelectedIndexChanged);
+			this.comboAsignatura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // comboTema
             // 
@@ -81,6 +82,7 @@
             this.comboTema.Name = "comboTema";
             this.comboTema.Size = new System.Drawing.Size(215, 21);
             this.comboTema.TabIndex = 3;
+			this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // checkFinal
             // 

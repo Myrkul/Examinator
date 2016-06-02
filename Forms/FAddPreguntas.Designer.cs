@@ -72,6 +72,7 @@
             this.comboRespuestas.Size = new System.Drawing.Size(79, 21);
             this.comboRespuestas.TabIndex = 2;
             this.comboRespuestas.SelectedIndexChanged += new System.EventHandler(this.comboRespuestas_SelectedIndexChanged);
+			this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // label2
             // 
