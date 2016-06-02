@@ -10,13 +10,11 @@ namespace Examinator.DAO
 	{
 		private static SQLiteConnection conn;
 		private DirectoryInfo temp;
-		private DirectoryInfo directorio;
 
 		public Comun_DAO ()
 		{
 			temp = new DirectoryInfo(Directory.GetCurrentDirectory());
-			directorio = temp.Parent.Parent;
-			String conexion = "Data Source=" + directorio.FullName + "\\examinator.db3;Synchronous=Full;Compress=True;";
+			String conexion = "Data Source=examinator.db3;Synchronous=Full;Compress=True;";
 			conn = new SQLiteConnection(conexion);
 			conn.Open();
 		}
