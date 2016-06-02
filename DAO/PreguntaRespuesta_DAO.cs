@@ -13,7 +13,9 @@ namespace Examinator.DAO
 			int correcta = pregunta.getCorrecta();
 			int idTema = pregunta.getTema();
 
-			String cadena = "INSERT INTO Preguntas (Enunciado, idCorrecta, idTema) VALUES ('" + enunciado + "', '" + correcta + "', '" + idTema + "')";
+			String cadena = "INSERT " +
+				"INTO Preguntas (Enunciado, idCorrecta, idTema) " +
+				"VALUES ('" + enunciado + "', '" + correcta + "', '" + idTema + "')";
 			this.execNonQuery(cadena);
 			pregunta.setIdPregunta(this.findPreguntaByEnunciado(pregunta.getEnunciado()));
 
@@ -29,7 +31,9 @@ namespace Examinator.DAO
 
 		private void insertRespuesta(Clases.Respuesta respuesta)
 		{
-			String cadena = "INSERT INTO Respuestas (Texto) VALUES ('" + respuesta.getTexto() + "')";
+			String cadena = "INSERT " +
+				"INTO Respuestas (Texto) " +
+				"VALUES ('" + respuesta.getTexto() + "')";
 			this.execNonQuery(cadena);
 		}
 
@@ -45,13 +49,17 @@ namespace Examinator.DAO
 
 		private int findRespuestaByTexto(String respuesta)
 		{
-			String cadena = "SELECT idRespuesta FROM Respuestas WHERE Texto IS '" + respuesta + "'";
+			String cadena = "SELECT idRespuesta " +
+				"FROM Respuestas " +
+				"WHERE Texto IS '" + respuesta + "'";
 			return execQueryInt(cadena);
 		}
 
 		public String findRespuestaById(int id)
 		{
-			String cadena = "SELECT Texto FROM Respuestas WHERE idRespuesta IS '" + id + "'";
+			String cadena = "SELECT Texto " +
+				"FROM Respuestas " +
+				"WHERE idRespuesta IS '" + id + "'";
 			return execQueryString(cadena);
 		}
 
@@ -87,13 +95,17 @@ namespace Examinator.DAO
 
 		private int findPreguntaByEnunciado(String pregunta)
 		{
-			String cadena = "SELECT idPregunta FROM Preguntas WHERE Enunciado IS '" + pregunta + "'";
+			String cadena = "SELECT idPregunta " +
+				"FROM Preguntas " +
+				"WHERE Enunciado IS '" + pregunta + "'";
 			return execQueryInt(cadena);
 		}
 
 		public String findPreguntaById(int id)
 		{
-			String cadena = "SELECT Enunciado FROM Preguntas WHERE idPregunta IS " + id;
+			String cadena = "SELECT Enunciado " +
+				"FROM Preguntas " +
+				"WHERE idPregunta IS " + id;
 			return execQueryString(cadena);
 		}
 

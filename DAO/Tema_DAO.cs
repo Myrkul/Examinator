@@ -10,7 +10,9 @@ namespace Examinator.DAO
 
 		public Clases.Tema insertTema(Clases.Tema tema)
 		{
-			String cadena = "INSERT INTO Temas (Nombre, idAsignatura) VALUES ('" + tema.getNombre() + "', '" + tema.getIdAsig() + "')";
+			String cadena = "INSERT " +
+				"INTO Temas (Nombre, idAsignatura) " +
+				"VALUES ('" + tema.getNombre() + "', '" + tema.getIdAsig() + "')";
 			this.execNonQuery(cadena);
 			tema.setIdTema(this.findTemaByName(tema.getNombre()));
 			return tema;
@@ -18,7 +20,9 @@ namespace Examinator.DAO
 
 		public void deleteTema(int idTema)
 		{
-			String cadena = "DELETE FROM Temas WHERE idTema IS (" + idTema + ")";
+			String cadena = "DELETE " +
+				"FROM Temas " +
+				"WHERE idTema IS (" + idTema + ")";
 			this.execNonQuery(cadena);
 		}
 
@@ -32,13 +36,17 @@ namespace Examinator.DAO
 
 		public int findTemaByName(String tema)
 		{
-			String cadena = "SELECT idTema FROM Temas WHERE Nombre IS '" + tema + "'";
+			String cadena = "SELECT idTema " +
+				"FROM Temas WHERE " +
+				"Nombre IS '" + tema + "'";
 			return execQueryInt(cadena);
 		}
 
 		public String findTemaById(int id)
 		{
-			String cadena = "SELECT Nombre FROM Temas WHERE idTema IS " + id;
+			String cadena = "SELECT Nombre " +
+				"FROM Temas " +
+				"WHERE idTema IS " + id;
 			return execQueryString(cadena);
 		}
 	}

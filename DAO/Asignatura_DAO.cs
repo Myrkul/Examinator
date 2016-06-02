@@ -10,7 +10,9 @@ namespace Examinator.DAO
 
 		public Clases.Asignatura insertAsignatura(Clases.Asignatura asignatura)
 		{
-			String cadena = "INSERT INTO Asignaturas (Nombre, idClase) VALUES ('" + asignatura.getNombre() + "', '" + asignatura.getIdClase() + "')";
+			String cadena = "INSERT " +
+				"INTO Asignaturas (Nombre, idClase) " +
+				"VALUES ('" + asignatura.getNombre() + "', '" + asignatura.getIdClase() + "')";
 			this.execNonQuery(cadena);
 			asignatura.setIdAsig(this.findAsignaturaByName(asignatura.getNombre()));
 			return asignatura;
@@ -18,31 +20,39 @@ namespace Examinator.DAO
 
 		public void deleteAsignatura(int idAsig)
 		{
-			String cadena = "DELETE FROM Asignaturas WHERE idAsignatura IS (" + idAsig + ")";
+			String cadena = "DELETE " +
+				"FROM Asignaturas " +
+				"WHERE idAsignatura IS (" + idAsig + ")";
 			this.execNonQuery(cadena);
 		}
 
 		public DataTable actualizarTablaAsig()
 		{
-			String cadena = "SELECT idAsignatura AS ID, Nombre FROM Asignaturas";
+			String cadena = "SELECT idAsignatura AS ID, Nombre " +
+				"FROM Asignaturas";
 			return execQueryTable(cadena);
 		}
 
 		public List<String> getAsignaturas()
 		{
-			String cadena = "SELECT Nombre FROM Asignaturas";
+			String cadena = "SELECT Nombre " +
+				"FROM Asignaturas";
 			return execQueryListString(cadena);
 		}
 
 		private int findAsignaturaByName(String asignatura)
 		{
-			String cadena = "SELECT idAsignatura FROM Asignaturas WHERE Nombre IS '" + asignatura + "'";
+			String cadena = "SELECT idAsignatura " +
+				"FROM Asignaturas " +
+				"WHERE Nombre IS '" + asignatura + "'";
 			return execQueryInt(cadena);
 		}
 
 		public String findAsignaturaById(int id)
 		{
-			String cadena = "SELECT Nombre FROM Asignaturas WHERE idAsignatura IS " + id;
+			String cadena = "SELECT Nombre " +
+				"FROM Asignaturas " +
+				"WHERE idAsignatura IS " + id;
 			return execQueryString(cadena);
 		}
 

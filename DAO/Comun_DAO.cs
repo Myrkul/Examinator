@@ -84,13 +84,17 @@ namespace Examinator.DAO
 
 		protected void updateRelacionPreguntaRespuesta(Clases.Pregunta pregunta, Clases.Respuesta respuesta)
 		{
-			String cadena = "INSERT INTO Preguntas_Respuestas (idPregunta, idRespuesta) VALUES ('" + pregunta.getIdPregunta() + "', '" + respuesta.getIdRespuesta() + "')";
+			String cadena = "INSERT " +
+				"INTO Preguntas_Respuestas (idPregunta, idRespuesta) " +
+				"VALUES ('" + pregunta.getIdPregunta() + "', '" + respuesta.getIdRespuesta() + "')";
 			this.execNonQuery(cadena);
 		}
 
 		protected void updateRelacionExamenNota(Clases.Examen examen, Clases.Nota nota)
 		{
-			String cadena = "INSERT INTO Examenes_Notas (idExamen, idNota) VALUES ('" + examen.getIdExamen() + "', '" + nota.getIdNota() + "')";
+			String cadena = "INSERT " +
+				"INTO Examenes_Notas (idExamen, idNota) " +
+				"VALUES ('" + examen.getIdExamen() + "', '" + nota.getIdNota() + "')";
 			this.execNonQuery(cadena);
 		}
 	}
