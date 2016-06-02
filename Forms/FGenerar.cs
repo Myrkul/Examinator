@@ -155,10 +155,21 @@ namespace Examinator.Forms
 		private void generarPDF(Clases.Examen examen, String nombreAsignatura, String nombreTema, List<int> listaPreguntas, int numRespuestas)
 		{
 			Document doc = new Document(PageSize.LETTER);
+			PdfWriter writer = null;
 
-			PdfWriter writer = PdfWriter.GetInstance(doc,
-				new FileStream(@"C:\Examen - " + nombreAsignatura + " - " + nombreTema + ".pdf", FileMode.Create));
-			
+			using (SaveFileDialog dialog = new SaveFileDialog())
+			{
+				dialog.Filter = "pdf files (*.pdf)|*.pdf"  ;
+				dialog.FilterIndex = 2 ;
+				dialog.RestoreDirectory = true ;
+
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					writer = PdfWriter.GetInstance(doc,
+						new FileStream(dialog.FileName, FileMode.Create));
+				}
+			}
+
 			doc.AddTitle("Examen tema: " + nombreTema);
 
 			doc.Open();
