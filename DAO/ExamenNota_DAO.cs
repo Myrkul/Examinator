@@ -5,7 +5,8 @@ namespace Examinator.DAO
 {
 	public class ExamenNota_DAO : DAO.Comun_DAO
 	{
-		public ExamenNota_DAO (){}
+		public ExamenNota_DAO () : base()
+		{}
 
 		public Clases.Nota insertNota(Clases.Nota nota)
 		{

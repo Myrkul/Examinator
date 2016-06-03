@@ -6,7 +6,8 @@ namespace Examinator.DAO
 {
 	public class Tema_DAO : DAO.Comun_DAO
 	{
-		public Tema_DAO (){}
+		public Tema_DAO () : base()
+		{}
 
 		public Clases.Tema insertTema(Clases.Tema tema)
 		{

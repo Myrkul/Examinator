@@ -5,7 +5,8 @@ namespace Examinator.DAO
 {
 	public class PreguntaRespuesta_DAO : DAO.Comun_DAO
 	{
-		public PreguntaRespuesta_DAO (){}
+		public PreguntaRespuesta_DAO () : base()
+		{}
 
 		public Clases.Pregunta insertPregunta(Clases.Pregunta pregunta, List<Clases.Respuesta> respuestas)
 		{

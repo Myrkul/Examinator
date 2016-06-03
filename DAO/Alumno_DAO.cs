@@ -5,7 +5,8 @@ namespace Examinator.DAO
 {
 	public class Alumno_DAO : DAO.Comun_DAO
 	{
-		public Alumno_DAO (){}
+		public Alumno_DAO () : base()
+		{}
 
 		public Clases.Alumno insertAlumno(Clases.Alumno alumno)
 		{

@@ -5,7 +5,8 @@ namespace Examinator.DAO
 {
 	public class Clase_DAO : DAO.Comun_DAO
 	{
-		public Clase_DAO (){}
+		public Clase_DAO () : base()
+		{}
 
 		public void deleteClase(int idClase)
 		{

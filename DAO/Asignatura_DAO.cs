@@ -6,7 +6,8 @@ namespace Examinator.DAO
 {
 	public class Asignatura_DAO : DAO.Comun_DAO
 	{
-		public Asignatura_DAO (){}
+		public Asignatura_DAO () : base()
+		{}
 
 		public Clases.Asignatura insertAsignatura(Clases.Asignatura asignatura)
 		{
