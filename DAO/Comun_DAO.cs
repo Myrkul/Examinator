@@ -8,13 +8,14 @@ namespace Examinator.DAO
 {
 	public class Comun_DAO
 	{
+		private static String rutaBBDD = "";
 		private static SQLiteConnection conn;
-		private DirectoryInfo temp;
 
 		public Comun_DAO ()
 		{
-			temp = new DirectoryInfo(Directory.GetCurrentDirectory());
-			String conexion = "Data Source=examinator.db3;Synchronous=Full;Compress=True;";
+			rutaBBDD = Directory.GetCurrentDirectory () + "\\examinator.db3";
+			String conexion = "Data Source=" + rutaBBDD + ";Synchronous=Full;Compress=True;";
+			Console.WriteLine (conexion);
 			conn = new SQLiteConnection(conexion);
 			conn.Open();
 		}
