@@ -92,6 +92,7 @@
             this.checkFinal.Size = new System.Drawing.Size(15, 14);
             this.checkFinal.TabIndex = 31;
             this.checkFinal.UseVisualStyleBackColor = true;
+            this.checkFinal.Visible = false;
             this.checkFinal.CheckedChanged += new System.EventHandler(this.checkFinal_CheckedChanged);
             // 
             // label5
@@ -102,6 +103,7 @@
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 30;
             this.label5.Text = "Final:";
+            this.label5.Visible = false;
             // 
             // label3
             // 
@@ -120,6 +122,7 @@
             this.label4.Size = new System.Drawing.Size(124, 13);
             this.label4.TabIndex = 33;
             this.label4.Text = "Se baja un punto cada...";
+            this.label4.Visible = false;
             // 
             // tNumero
             // 
@@ -137,6 +140,7 @@
             this.tIncorrectas.TabIndex = 35;
             this.tIncorrectas.Text = "0";
             this.tIncorrectas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tIncorrectas.Visible = false;
             // 
             // label6
             // 
@@ -146,6 +150,7 @@
             this.label6.Size = new System.Drawing.Size(137, 13);
             this.label6.TabIndex = 36;
             this.label6.Text = "preguntas INCORRECTAS.";
+            this.label6.Visible = false;
             // 
             // label7
             // 
@@ -155,6 +160,7 @@
             this.label7.Size = new System.Drawing.Size(124, 13);
             this.label7.TabIndex = 37;
             this.label7.Text = "Se baja un punto cada...";
+            this.label7.Visible = false;
             // 
             // tVacias
             // 
@@ -164,6 +170,7 @@
             this.tVacias.TabIndex = 38;
             this.tVacias.Text = "0";
             this.tVacias.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tVacias.Visible = false;
             // 
             // label8
             // 
@@ -173,6 +180,7 @@
             this.label8.Size = new System.Drawing.Size(147, 13);
             this.label8.TabIndex = 39;
             this.label8.Text = "preguntas SIN CONTESTAR.";
+            this.label8.Visible = false;
             // 
             // btnGenerar
             // 
@@ -205,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 360);
+            this.ClientSize = new System.Drawing.Size(395, 360);
             this.Controls.Add(this.tNumRespuestas);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnGenerar);
