@@ -72,7 +72,6 @@
             this.comboRespuestas.Size = new System.Drawing.Size(79, 21);
             this.comboRespuestas.TabIndex = 2;
             this.comboRespuestas.SelectedIndexChanged += new System.EventHandler(this.comboRespuestas_SelectedIndexChanged);
-			this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // label2
             // 
@@ -139,6 +138,7 @@
             // 
             // comboAsignatura
             // 
+            this.comboAsignatura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboAsignatura.FormattingEnabled = true;
             this.comboAsignatura.Location = new System.Drawing.Point(137, 122);
             this.comboAsignatura.Name = "comboAsignatura";
@@ -148,6 +148,7 @@
             // 
             // comboTema
             // 
+            this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTema.FormattingEnabled = true;
             this.comboTema.Location = new System.Drawing.Point(137, 153);
             this.comboTema.Name = "comboTema";

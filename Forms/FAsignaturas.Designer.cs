@@ -41,6 +41,8 @@
             this.tNombreTema = new System.Windows.Forms.TextBox();
             this.btnAddTema = new System.Windows.Forms.Button();
             this.btnEliminarTema = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboClase = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAsignaturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTemas)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +52,7 @@
             this.tablaAsignaturas.AllowUserToAddRows = false;
             this.tablaAsignaturas.AllowUserToDeleteRows = false;
             this.tablaAsignaturas.AllowUserToOrderColumns = true;
+            this.tablaAsignaturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaAsignaturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAsignaturas.Location = new System.Drawing.Point(12, 48);
             this.tablaAsignaturas.Name = "tablaAsignaturas";
@@ -62,7 +65,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 220);
+            this.label1.Location = new System.Drawing.Point(9, 252);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 1;
@@ -70,7 +73,7 @@
             // 
             // btnAddAsig
             // 
-            this.btnAddAsig.Location = new System.Drawing.Point(233, 249);
+            this.btnAddAsig.Location = new System.Drawing.Point(233, 281);
             this.btnAddAsig.Name = "btnAddAsig";
             this.btnAddAsig.Size = new System.Drawing.Size(79, 23);
             this.btnAddAsig.TabIndex = 2;
@@ -80,7 +83,7 @@
             // 
             // tNombreAsig
             // 
-            this.tNombreAsig.Location = new System.Drawing.Point(74, 217);
+            this.tNombreAsig.Location = new System.Drawing.Point(74, 249);
             this.tNombreAsig.Name = "tNombreAsig";
             this.tNombreAsig.Size = new System.Drawing.Size(238, 20);
             this.tNombreAsig.TabIndex = 3;
@@ -97,7 +100,7 @@
             // 
             // btnEliminarAsig
             // 
-            this.btnEliminarAsig.Location = new System.Drawing.Point(153, 249);
+            this.btnEliminarAsig.Location = new System.Drawing.Point(153, 281);
             this.btnEliminarAsig.Name = "btnEliminarAsig";
             this.btnEliminarAsig.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarAsig.TabIndex = 5;
@@ -130,6 +133,7 @@
             this.tablaTemas.AllowUserToAddRows = false;
             this.tablaTemas.AllowUserToDeleteRows = false;
             this.tablaTemas.AllowUserToOrderColumns = true;
+            this.tablaTemas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaTemas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTemas.Location = new System.Drawing.Point(343, 48);
             this.tablaTemas.Name = "tablaTemas";
@@ -173,11 +177,31 @@
             this.btnEliminarTema.UseVisualStyleBackColor = true;
             this.btnEliminarTema.Click += new System.EventHandler(this.btnEliminarTema_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 219);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Clase:";
+            // 
+            // comboClase
+            // 
+            this.comboClase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboClase.FormattingEnabled = true;
+            this.comboClase.Location = new System.Drawing.Point(74, 216);
+            this.comboClase.Name = "comboClase";
+            this.comboClase.Size = new System.Drawing.Size(238, 21);
+            this.comboClase.TabIndex = 14;
+            // 
             // FAsignaturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 357);
+            this.Controls.Add(this.comboClase);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnEliminarTema);
             this.Controls.Add(this.btnAddTema);
             this.Controls.Add(this.tNombreTema);
@@ -215,5 +239,7 @@
         private System.Windows.Forms.TextBox tNombreTema;
         private System.Windows.Forms.Button btnAddTema;
         private System.Windows.Forms.Button btnEliminarTema;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboClase;
     }
 }

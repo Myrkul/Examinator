@@ -56,6 +56,7 @@
             this.tablaExamenes.AllowUserToAddRows = false;
             this.tablaExamenes.AllowUserToDeleteRows = false;
             this.tablaExamenes.AllowUserToOrderColumns = true;
+            this.tablaExamenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaExamenes.Location = new System.Drawing.Point(12, 47);
             this.tablaExamenes.Name = "tablaExamenes";
@@ -70,6 +71,7 @@
             this.tablaPreguntas.AllowUserToAddRows = false;
             this.tablaPreguntas.AllowUserToDeleteRows = false;
             this.tablaPreguntas.AllowUserToOrderColumns = true;
+            this.tablaPreguntas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaPreguntas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaPreguntas.Location = new System.Drawing.Point(330, 47);
             this.tablaPreguntas.Name = "tablaPreguntas";

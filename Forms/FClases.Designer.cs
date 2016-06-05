@@ -52,6 +52,7 @@
             this.tablaClases.AllowUserToAddRows = false;
             this.tablaClases.AllowUserToDeleteRows = false;
             this.tablaClases.AllowUserToOrderColumns = true;
+            this.tablaClases.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaClases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClases.Location = new System.Drawing.Point(12, 48);
             this.tablaClases.Name = "tablaClases";
@@ -65,6 +66,7 @@
             this.tablaAlumnos.AllowUserToAddRows = false;
             this.tablaAlumnos.AllowUserToDeleteRows = false;
             this.tablaAlumnos.AllowUserToOrderColumns = true;
+            this.tablaAlumnos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaAlumnos.Location = new System.Drawing.Point(343, 48);
             this.tablaAlumnos.Name = "tablaAlumnos";
