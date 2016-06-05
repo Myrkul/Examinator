@@ -67,22 +67,22 @@
             // 
             // comboAsignatura
             // 
+            this.comboAsignatura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboAsignatura.FormattingEnabled = true;
             this.comboAsignatura.Location = new System.Drawing.Point(79, 10);
             this.comboAsignatura.Name = "comboAsignatura";
             this.comboAsignatura.Size = new System.Drawing.Size(215, 21);
             this.comboAsignatura.TabIndex = 2;
             this.comboAsignatura.SelectedIndexChanged += new System.EventHandler(this.comboAsignatura_SelectedIndexChanged);
-			this.comboAsignatura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // comboTema
             // 
+            this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTema.FormattingEnabled = true;
             this.comboTema.Location = new System.Drawing.Point(79, 44);
             this.comboTema.Name = "comboTema";
             this.comboTema.Size = new System.Drawing.Size(215, 21);
             this.comboTema.TabIndex = 3;
-			this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // checkFinal
             // 
@@ -199,6 +199,7 @@
             this.tNumRespuestas.Name = "tNumRespuestas";
             this.tNumRespuestas.Size = new System.Drawing.Size(95, 20);
             this.tNumRespuestas.TabIndex = 42;
+            this.tNumRespuestas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // FGenerar
             // 
