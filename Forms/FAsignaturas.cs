@@ -14,14 +14,23 @@ namespace Examinator.Forms
     {
 		private DAO.Asignatura_DAO asignaturaDAO;
 		private DAO.Tema_DAO temaDAO;
+        private DAO.Clase_DAO claseDAO;
 
         public FAsignaturas()
         {
             InitializeComponent();
 			asignaturaDAO = new DAO.Asignatura_DAO();
 			temaDAO = new DAO.Tema_DAO();
+            claseDAO = new DAO.Clase_DAO();
 
 			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
+
+            List<String> listaClases = claseDAO.getClases();
+
+            for (int k = 0; k < listaClases.Count; k++)
+            {
+                comboClase.Items.Add(listaClases[k]);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -31,12 +40,20 @@ namespace Examinator.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (comboClase.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una clase.");
+                return;
+            }
             if(tNombreAsig.Text.Equals(""))
             {
                 MessageBox.Show("El nombre no puede ir en blanco.");
                 return;
             }
-            Clases.Asignatura asignatura = new Clases.Asignatura(tNombreAsig.Text);
+            String nombreClase = comboClase.SelectedItem.ToString();
+            int idClase = claseDAO.findClaseByName(nombreClase);
+
+            Clases.Asignatura asignatura = new Clases.Asignatura(tNombreAsig.Text, idClase);
 			asignatura = asignaturaDAO.insertAsignatura(asignatura);
 			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
         }

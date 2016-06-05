@@ -12,9 +12,10 @@ namespace Examinator.Clases
 		int idAsig;
 		int idClase;
 		
-		public Asignatura(String nombre)
+		public Asignatura(String nombre, int idClase)
 		{
 			this.nombre = nombre;
+            this.idClase = idClase;
 		}
 		
 		public void setNombre(String nombre)

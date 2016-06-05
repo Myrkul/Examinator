@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace Examinator.DAO
 {
@@ -26,7 +27,7 @@ namespace Examinator.DAO
 			return clase;
 		}
 
-		private int findClaseByName(String clase)
+		public int findClaseByName(String clase)
 		{
 			String cadena = "SELECT idClase " +
 				"FROM Clases WHERE " +
@@ -48,6 +49,13 @@ namespace Examinator.DAO
 				"FROM Clases";
 			return execQueryTable(cadena);
 		}
+
+        public List<String> getClases()
+        {
+            String cadena = "SELECT Nombre " +
+                "FROM Clases";
+            return execQueryListString(cadena);
+        }
 	}
 }
 

@@ -29,8 +29,8 @@ namespace Examinator.DAO
 
 		public DataTable actualizarTablaAsig()
 		{
-			String cadena = "SELECT idAsignatura AS ID, Nombre " +
-				"FROM Asignaturas";
+            String cadena = "SELECT a.idAsignatura AS ID, c.Nombre AS Clase, a.Nombre AS Asignatura " +
+				"FROM Asignaturas a INNER JOIN Clases c ON c.idClase = a.idClase";
 			return execQueryTable(cadena);
 		}
 
