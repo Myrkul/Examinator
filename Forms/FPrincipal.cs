@@ -62,5 +62,11 @@ namespace Examinator
 			Forms.FClases gestionClases = new Forms.FClases();
 			gestionClases.Show();
 		}
+
+        private void gestionarExámenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.FExamenes gestionExamenes = new Forms.FExamenes();
+            gestionExamenes.Show();
+        }
     }
 }

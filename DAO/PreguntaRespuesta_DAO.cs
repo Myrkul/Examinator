@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 
 namespace Examinator.DAO
@@ -64,6 +65,34 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
+        public void deletePregunta(int idPregunta)
+        {
+
+            String cadena = "SELECT r.idRespuesta " +
+                            "FROM Respuestas r INNER JOIN Preguntas_Respuestas pr ON r.idRespuesta = pr.idRespuesta " +
+                            "WHERE pr.idPregunta IS " + idPregunta;
+
+            List<int> listaRespuestas = execQueryListInt(cadena);
+
+            cadena = "DELETE " +
+                "FROM Preguntas_Respuestas " +
+                "WHERE idPregunta IS (" + idPregunta + ")";
+            this.execNonQuery(cadena);
+
+            cadena = "DELETE " +
+                "FROM Preguntas " +
+                "WHERE idPregunta IS (" + idPregunta + ")";
+            this.execNonQuery(cadena);
+
+            for (int k = 0; k < listaRespuestas.Count; k++)
+            {
+                cadena = "DELETE " +
+                "FROM Respuestas " +
+                "WHERE idRespuesta IS (" + listaRespuestas[k] + ")";
+                this.execNonQuery(cadena);
+            }
+        }
+
 		public List<int> getRespuestasPregunta(int id, int numRespuestas)
 		{
 			String cadena = "SELECT idCorrecta" +
@@ -93,6 +122,14 @@ namespace Examinator.DAO
 
 			return listaFinalRespuestas;
 		}
+
+        public DataTable actualizarTablaPreguntas(int idExamen)
+        {
+            String cadena = "SELECT p.idPregunta AS ID, p.Enunciado " +
+                "FROM Preguntas p INNER JOIN Examenes_Preguntas ep ON p.idPregunta = ep.idPregunta " + 
+                "WHERE ep.idExamen IS " + idExamen;
+            return execQueryTable(cadena);
+        }
 
 		private int findPreguntaByEnunciado(String pregunta)
 		{

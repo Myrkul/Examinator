@@ -21,10 +21,10 @@ namespace Examinator.DAO
 
 		public void deleteAsignatura(int idAsig)
 		{
-			String cadena = "DELETE " +
-				"FROM Asignaturas " +
-				"WHERE idAsignatura IS (" + idAsig + ")";
-			this.execNonQuery(cadena);
+            String cadena = "DELETE " +
+                "FROM Asignaturas " +
+                "WHERE idAsignatura IS (" + idAsig + ")";
+            this.execNonQuery(cadena);
 		}
 
 		public DataTable actualizarTablaAsig()
@@ -49,13 +49,21 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
-		public String findAsignaturaById(int id)
+		public String findAsignaturaById(int idAsignatura)
 		{
 			String cadena = "SELECT Nombre " +
 				"FROM Asignaturas " +
-				"WHERE idAsignatura IS " + id;
+                "WHERE idAsignatura IS " + idAsignatura;
 			return execQueryString(cadena);
 		}
+
+        public String findAsignaturaByTema(int idTema)
+        {
+            String cadena = "SELECT a.Nombre " +
+                "FROM Temas t INNER JOIN Asignaturas a ON a.idAsignatura = t.idAsignatura " +
+                "WHERE t.idTema IS " + idTema;
+            return execQueryString(cadena);
+        }
 
 		public List<String> cargarAsignaturas(String nombreAsig)
 		{

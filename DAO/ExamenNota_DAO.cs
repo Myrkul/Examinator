@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 
 namespace Examinator.DAO
@@ -27,6 +28,47 @@ namespace Examinator.DAO
 			this.updateRelacionExamenPreguntas(examen, preguntas);
 			return examen;
 		}
+
+        public void deleteExamen(int idExamen)
+        {
+            String cadena = "DELETE " +
+                "FROM Examenes " +
+                "WHERE idExamen IS (" + idExamen + ")";
+            this.execNonQuery(cadena);
+        }
+
+        public Clases.Examen getExamen(int idExamen)
+        {
+            Clases.Examen examen;
+            int idTema;
+            int numPreguntas;
+            int numRespuestas;
+
+            String cadena = "SELECT idTema " +
+                "FROM Examenes " +
+                "WHERE idExamen IS (" + idExamen + ")";
+            idTema = this.execQueryInt(cadena);
+
+            cadena = "SELECT numPreguntas " +
+                "FROM Examenes " +
+                "WHERE idExamen IS (" + idExamen + ")";
+            numPreguntas = this.execQueryInt(cadena);
+
+            cadena = "SELECT numRespuestas " +
+                "FROM Examenes " +
+                "WHERE idExamen IS (" + idExamen + ")";
+            numRespuestas = this.execQueryInt(cadena);
+
+            examen = new Clases.Examen(idTema, numPreguntas, numRespuestas);
+            return examen;
+        }
+
+        public DataTable actualizarTablaExamenes()
+        {
+            String cadena = "SELECT e.idExamen AS ID, t.Nombre " +
+                "FROM Examenes e INNER JOIN Temas t ON e.idTema = t.idTema";
+            return execQueryTable(cadena);
+        }
 
 		private void updateRelacionExamenPreguntas(Clases.Examen examen, List<int> preguntas)
 		{

@@ -31,12 +31,13 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aulasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.gestionarClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionarClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarAsignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarAlumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGenerar = new System.Windows.Forms.Button();
+            this.gestionarExámenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,18 +66,17 @@
             // aulasToolStripMenuItem
             // 
             this.aulasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-				this.gestionarClasesToolStripMenuItem});
+            this.gestionarClasesToolStripMenuItem});
             this.aulasToolStripMenuItem.Name = "aulasToolStripMenuItem";
-            this.aulasToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.aulasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aulasToolStripMenuItem.Text = "Clases";
             // 
-            // gestionarAulasToolStripMenuItem
+            // gestionarClasesToolStripMenuItem
             // 
-			this.gestionarClasesToolStripMenuItem.Name = "gestionarClasesToolStripMenuItem";
-			this.gestionarClasesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-			this.gestionarClasesToolStripMenuItem.Text = "Gestionar Clases";
-			this.gestionarClasesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClasesToolStripMenuItem_Click);
-
+            this.gestionarClasesToolStripMenuItem.Name = "gestionarClasesToolStripMenuItem";
+            this.gestionarClasesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.gestionarClasesToolStripMenuItem.Text = "Gestionar Clases";
+            this.gestionarClasesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClasesToolStripMenuItem_Click);
             // 
             // asignaturasToolStripMenuItem
             // 
@@ -93,6 +93,19 @@
             this.gestionarAsignaturasToolStripMenuItem.Text = "Gestionar Asignaturas";
             this.gestionarAsignaturasToolStripMenuItem.Click += new System.EventHandler(this.gestionarAsignaturasToolStripMenuItem_Click);
             // 
+            // alumnosToolStripMenuItem
+            // 
+            this.alumnosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionarExámenesToolStripMenuItem});
+            this.alumnosToolStripMenuItem.Name = "alumnosToolStripMenuItem";
+            this.alumnosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.alumnosToolStripMenuItem.Text = "Exámenes";
+            // 
+            // gestionarAlumnosToolStripMenuItem
+            // 
+            this.gestionarAlumnosToolStripMenuItem.Name = "gestionarAlumnosToolStripMenuItem";
+            this.gestionarAlumnosToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
             // btnGenerar
             // 
             this.btnGenerar.Location = new System.Drawing.Point(464, 52);
@@ -102,6 +115,13 @@
             this.btnGenerar.Text = "Generar Examen";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+            // 
+            // gestionarExámenesToolStripMenuItem
+            // 
+            this.gestionarExámenesToolStripMenuItem.Name = "gestionarExámenesToolStripMenuItem";
+            this.gestionarExámenesToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.gestionarExámenesToolStripMenuItem.Text = "Gestionar Exámenes";
+            this.gestionarExámenesToolStripMenuItem.Click += new System.EventHandler(this.gestionarExámenesToolStripMenuItem_Click);
             // 
             // FPrincipal
             // 
@@ -132,6 +152,7 @@
         private System.Windows.Forms.ToolStripMenuItem alumnosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionarAlumnosToolStripMenuItem;
         private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.ToolStripMenuItem gestionarExámenesToolStripMenuItem;
     }
 }
 
