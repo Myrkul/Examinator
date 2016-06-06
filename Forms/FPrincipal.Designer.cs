@@ -35,17 +35,17 @@
             this.asignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarAsignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionarExámenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarAlumnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGenerar = new System.Windows.Forms.Button();
-            this.gestionarExámenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 52);
+            this.btnAdd.Location = new System.Drawing.Point(120, 61);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(122, 77);
+            this.btnAdd.Size = new System.Drawing.Size(238, 77);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Añadir Preguntas";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.alumnosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(600, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(484, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,21 +101,6 @@
             this.alumnosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.alumnosToolStripMenuItem.Text = "Exámenes";
             // 
-            // gestionarAlumnosToolStripMenuItem
-            // 
-            this.gestionarAlumnosToolStripMenuItem.Name = "gestionarAlumnosToolStripMenuItem";
-            this.gestionarAlumnosToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.Location = new System.Drawing.Point(464, 52);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(124, 77);
-            this.btnGenerar.TabIndex = 2;
-            this.btnGenerar.Text = "Generar Examen";
-            this.btnGenerar.UseVisualStyleBackColor = true;
-            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-            // 
             // gestionarExámenesToolStripMenuItem
             // 
             this.gestionarExámenesToolStripMenuItem.Name = "gestionarExámenesToolStripMenuItem";
@@ -123,11 +108,26 @@
             this.gestionarExámenesToolStripMenuItem.Text = "Gestionar Exámenes";
             this.gestionarExámenesToolStripMenuItem.Click += new System.EventHandler(this.gestionarExámenesToolStripMenuItem_Click);
             // 
+            // gestionarAlumnosToolStripMenuItem
+            // 
+            this.gestionarAlumnosToolStripMenuItem.Name = "gestionarAlumnosToolStripMenuItem";
+            this.gestionarAlumnosToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // btnGenerar
+            // 
+            this.btnGenerar.Location = new System.Drawing.Point(120, 183);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(240, 77);
+            this.btnGenerar.TabIndex = 2;
+            this.btnGenerar.Text = "Generar Examen";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+            // 
             // FPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 294);
+            this.ClientSize = new System.Drawing.Size(484, 313);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.menuStrip1);

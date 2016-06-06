@@ -37,6 +37,8 @@
             this.btnEliminarExamen = new System.Windows.Forms.Button();
             this.btnEliminarPregunta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.comboClase = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaExamenes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaPreguntas)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +60,7 @@
             this.tablaExamenes.AllowUserToOrderColumns = true;
             this.tablaExamenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaExamenes.Location = new System.Drawing.Point(12, 47);
+            this.tablaExamenes.Location = new System.Drawing.Point(12, 76);
             this.tablaExamenes.Name = "tablaExamenes";
             this.tablaExamenes.ReadOnly = true;
             this.tablaExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -73,7 +75,7 @@
             this.tablaPreguntas.AllowUserToOrderColumns = true;
             this.tablaPreguntas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaPreguntas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaPreguntas.Location = new System.Drawing.Point(330, 47);
+            this.tablaPreguntas.Location = new System.Drawing.Point(330, 76);
             this.tablaPreguntas.Name = "tablaPreguntas";
             this.tablaPreguntas.ReadOnly = true;
             this.tablaPreguntas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -92,7 +94,7 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(237, 216);
+            this.btnImprimir.Location = new System.Drawing.Point(237, 245);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 11;
@@ -102,16 +104,17 @@
             // 
             // btnAddPregunta
             // 
-            this.btnAddPregunta.Location = new System.Drawing.Point(619, 216);
+            this.btnAddPregunta.Location = new System.Drawing.Point(619, 245);
             this.btnAddPregunta.Name = "btnAddPregunta";
             this.btnAddPregunta.Size = new System.Drawing.Size(75, 23);
             this.btnAddPregunta.TabIndex = 12;
             this.btnAddPregunta.Text = "Añadir";
             this.btnAddPregunta.UseVisualStyleBackColor = true;
+            this.btnAddPregunta.Click += new System.EventHandler(this.btnAddPregunta_Click);
             // 
             // btnEliminarExamen
             // 
-            this.btnEliminarExamen.Location = new System.Drawing.Point(156, 216);
+            this.btnEliminarExamen.Location = new System.Drawing.Point(156, 245);
             this.btnEliminarExamen.Name = "btnEliminarExamen";
             this.btnEliminarExamen.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarExamen.TabIndex = 13;
@@ -121,7 +124,7 @@
             // 
             // btnEliminarPregunta
             // 
-            this.btnEliminarPregunta.Location = new System.Drawing.Point(538, 216);
+            this.btnEliminarPregunta.Location = new System.Drawing.Point(538, 245);
             this.btnEliminarPregunta.Name = "btnEliminarPregunta";
             this.btnEliminarPregunta.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarPregunta.TabIndex = 14;
@@ -131,7 +134,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(619, 273);
+            this.btnCancelar.Location = new System.Drawing.Point(619, 300);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 15;
@@ -139,11 +142,31 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // comboClase
+            // 
+            this.comboClase.FormattingEnabled = true;
+            this.comboClase.Location = new System.Drawing.Point(54, 36);
+            this.comboClase.Name = "comboClase";
+            this.comboClase.Size = new System.Drawing.Size(258, 21);
+            this.comboClase.TabIndex = 16;
+            this.comboClase.SelectedIndexChanged += new System.EventHandler(this.comboClase_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Clase:";
+            // 
             // FExamenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 308);
+            this.ClientSize = new System.Drawing.Size(706, 335);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboClase);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminarPregunta);
             this.Controls.Add(this.btnEliminarExamen);
@@ -154,7 +177,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tablaExamenes);
             this.Name = "FExamenes";
-            this.Text = "FExamenes";
+            this.Text = "Exámenes";
             ((System.ComponentModel.ISupportInitialize)(this.tablaExamenes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaPreguntas)).EndInit();
             this.ResumeLayout(false);
@@ -173,5 +196,7 @@
         private System.Windows.Forms.Button btnEliminarExamen;
         private System.Windows.Forms.Button btnEliminarPregunta;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox comboClase;
+        private System.Windows.Forms.Label label3;
     }
 }

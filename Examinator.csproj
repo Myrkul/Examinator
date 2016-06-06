@@ -82,6 +82,12 @@
     <Compile Include="Forms\FGenerar.Designer.cs">
       <DependentUpon>FGenerar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FPreguntaExamen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FPreguntaExamen.Designer.cs">
+      <DependentUpon>FPreguntaExamen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FGenerar.resx">
       <DependentUpon>FGenerar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FPreguntaExamen.resx">
+      <DependentUpon>FPreguntaExamen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FPrincipal.resx">
       <DependentUpon>FPrincipal.cs</DependentUpon>

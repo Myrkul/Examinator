@@ -71,5 +71,15 @@ namespace Examinator.Forms
             Clases.Examen examen = examenNotaDAO.getExamen(idExamen);
             Utils.Generar.generarPDF(examen);
         }
+
+        private void comboClase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPregunta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

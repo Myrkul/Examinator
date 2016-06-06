@@ -213,7 +213,7 @@
             this.Controls.Add(this.tablaAlumnos);
             this.Controls.Add(this.tablaClases);
             this.Name = "FClases";
-            this.Text = "FClases";
+            this.Text = "Clases";
             ((System.ComponentModel.ISupportInitialize)(this.tablaClases)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAlumnos)).EndInit();
             this.ResumeLayout(false);
