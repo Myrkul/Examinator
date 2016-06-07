@@ -35,6 +35,17 @@ namespace Examinator.DAO
 			                "INTO Examenes_Preguntas " +
 			                "VALUES ('" + idExamen + "',' " + idPregunta + "')";
 			execNonQuery(cadena);
+
+			cadena = "SELECT numPreguntas " +
+				"FROM Examenes " +
+				"WHERE idExamen IS " + idExamen;
+			Console.WriteLine (cadena);
+			int numPreguntas = execQueryInt(cadena);
+
+			cadena = "UPDATE Examenes " +
+				"SET numPreguntas = " + (numPreguntas+1) + " " +
+				"WHERE idExamen IS " + idExamen;
+			execNonQuery(cadena);
 		}
 
         public void deleteExamen(int idExamen)

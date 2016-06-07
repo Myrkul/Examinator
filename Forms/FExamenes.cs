@@ -118,7 +118,7 @@ namespace Examinator.Forms
         {
 			try {
 				int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
-				Forms.FPreguntaExamen preguntaExamen = new Forms.FPreguntaExamen (idExamen);
+				Forms.FPreguntaExamen preguntaExamen = new Forms.FPreguntaExamen (idExamen, tablaPreguntas);
 				preguntaExamen.Show ();
 			} catch(ArgumentOutOfRangeException) {
 				MessageBox.Show ("Debe seleccionar un examen.");

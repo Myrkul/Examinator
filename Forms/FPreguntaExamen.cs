@@ -17,18 +17,20 @@ namespace Examinator.Forms
 		private DAO.ExamenNota_DAO examenNotaDAO;
 		private DAO.PreguntaRespuesta_DAO preguntaRespuestaDAO;
 		private DAO.Tema_DAO temaDAO;
+		private DataGridView tablaPreguntasExamen;
 
-		public FPreguntaExamen(int idExamen)
+		public FPreguntaExamen(int idExamen, DataGridView tablaPreguntasExamen)
         {
 			examenNotaDAO = new DAO.ExamenNota_DAO ();
 			preguntaRespuestaDAO = new DAO.PreguntaRespuesta_DAO ();
 			temaDAO = new DAO.Tema_DAO ();
+			this.tablaPreguntasExamen = tablaPreguntasExamen;
+
+			InitializeComponent();
 
 			this.idExamen = idExamen;
 			idTema = temaDAO.findTemaByExamen(this.idExamen);
 			tablaPreguntas.DataSource = preguntaRespuestaDAO.getPreguntasByTemaDataTable (this.idTema);
-
-            InitializeComponent();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -36,8 +38,12 @@ namespace Examinator.Forms
 			try {
 				int idPregunta = Convert.ToInt32(tablaPreguntas.SelectedRows [0].Cells [0].Value);
 
-				examenNotaDAO.insertPreguntaEnExamen (idTema, idPregunta);
+				examenNotaDAO.insertPreguntaEnExamen (idExamen, idPregunta);
+
 				MessageBox.Show("Añadida.");
+
+				this.tablaPreguntasExamen.DataSource = preguntaRespuestaDAO.actualizarTablaPreguntas(idExamen);
+
 			} catch(ArgumentOutOfRangeException) {
 				MessageBox.Show ("Debe seleccionar una pregunta.");
 			}
