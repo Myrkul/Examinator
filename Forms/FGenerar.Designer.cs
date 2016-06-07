@@ -46,7 +46,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tNumRespuestas = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboClases = new System.Windows.Forms.ComboBox();
+            this.comboClase = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -220,21 +220,22 @@
             this.label10.TabIndex = 43;
             this.label10.Text = "Clase:";
             // 
-            // comboClases
+            // comboClase
             // 
-            this.comboClases.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboClases.FormattingEnabled = true;
-            this.comboClases.Location = new System.Drawing.Point(78, 12);
-            this.comboClases.Name = "comboClases";
-            this.comboClases.Size = new System.Drawing.Size(215, 21);
-            this.comboClases.TabIndex = 44;
+            this.comboClase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboClase.FormattingEnabled = true;
+            this.comboClase.Location = new System.Drawing.Point(78, 12);
+            this.comboClase.Name = "comboClase";
+            this.comboClase.Size = new System.Drawing.Size(215, 21);
+            this.comboClase.TabIndex = 44;
+            this.comboClase.SelectedIndexChanged += new System.EventHandler(this.comboClase_SelectedIndexChanged);
             // 
             // FGenerar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 398);
-            this.Controls.Add(this.comboClases);
+            this.Controls.Add(this.comboClase);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tNumRespuestas);
             this.Controls.Add(this.label9);
@@ -280,6 +281,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tNumRespuestas;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboClases;
+        private System.Windows.Forms.ComboBox comboClase;
     }
 }

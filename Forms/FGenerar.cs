@@ -16,6 +16,7 @@ namespace Examinator.Forms
 		private DAO.ExamenNota_DAO examenNotaDAO;
 		private DAO.Asignatura_DAO asignaturaDAO;
 		private DAO.PreguntaRespuesta_DAO preguntaRespuestaDAO;
+        private DAO.Clase_DAO claseDAO;
 
         public FGenerar()
         {
@@ -24,13 +25,14 @@ namespace Examinator.Forms
 			examenNotaDAO = new DAO.ExamenNota_DAO ();
 			asignaturaDAO = new DAO.Asignatura_DAO ();
 			preguntaRespuestaDAO = new DAO.PreguntaRespuesta_DAO ();
+            claseDAO = new DAO.Clase_DAO();
 
-			List<String> listaAsig = asignaturaDAO.getAsignaturas();
+            List<String> listaClases = claseDAO.getClases();
 
-            for (int k = 0; k < listaAsig.Count; k++)
-			{
-				comboAsignatura.Items.Add(listaAsig[k]);
-			}
+            for (int k = 0; k < listaClases.Count; k++)
+            {
+                comboClase.Items.Add(listaClases[k]);
+            }
         }
 
         private void checkFinal_CheckedChanged(object sender, EventArgs e)
@@ -132,22 +134,33 @@ namespace Examinator.Forms
 				}
 			} while(numPreguntas > k);
 			Clases.Examen examen = new Clases.Examen(temaDAO.findTemaByName(tema), numPreguntas, numRespuestas);
-			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas);
+			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas, numPreguntas, numRespuestas);
             Utils.Generar.generarPDF(examen);
 			MessageBox.Show("Generado.");
         }
 
+        private void comboClase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String clase = comboClase.SelectedItem.ToString();
+            int idClase = claseDAO.findClaseByName(clase);
+            List<String> listaAsignaturas = asignaturaDAO.getAsignaturasByClase(idClase);
+            comboAsignatura.Items.Clear();
+            for (int k = 0; k < listaAsignaturas.Count; k++)
+            {
+                comboAsignatura.Items.Add(listaAsignaturas[k]);
+            }
+            comboTema.Items.Clear();
+        }
         private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            String asignatura = comboAsignatura.SelectedItem.ToString();
+            int idAsignatura = asignaturaDAO.findAsignaturaByName(asignatura);
+            List<String> listaTemas = asignaturaDAO.getTemas(idAsignatura);
             comboTema.Items.Clear();
-            List<String> listaTemas = new List<String>();
-			int idAsignatura = asignaturaDAO.findAsignaturaByName (this.comboAsignatura.SelectedItem.ToString ());
-			listaTemas = asignaturaDAO.getTemas(idAsignatura);
-
             for (int k = 0; k < listaTemas.Count; k++)
-			{
-				comboTema.Items.Add(listaTemas[k]);
-			}
+            {
+                comboTema.Items.Add(listaTemas[k]);
+            }
         }
     }
 }
