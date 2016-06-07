@@ -9,6 +9,7 @@ namespace Examinator.DAO
 		public Asignatura_DAO () : base()
 		{}
 
+        //Inserta una asignatura
 		public Clases.Asignatura insertAsignatura(Clases.Asignatura asignatura)
 		{
 			String cadena = "INSERT " +
@@ -19,6 +20,7 @@ namespace Examinator.DAO
 			return asignatura;
 		}
 
+        //Elimina una asignatura por ID
 		public void deleteAsignatura(int idAsig)
 		{
             String cadena = "DELETE " +
@@ -27,6 +29,7 @@ namespace Examinator.DAO
             this.execNonQuery(cadena);
 		}
 
+        //Actualiza el DataGridView de todas las asignaturas
 		public DataTable actualizarTablaAsig()
 		{
             String cadena = "SELECT a.idAsignatura AS ID, c.Nombre AS Clase, a.Nombre AS Asignatura " +
@@ -34,6 +37,7 @@ namespace Examinator.DAO
 			return execQueryTable(cadena);
 		}
 
+        //Devuelve todas las asignaturas en una lista de strings para añadirlas a un combo
 		public List<String> getAsignaturas()
 		{
 			String cadena = "SELECT Nombre " +
@@ -41,6 +45,7 @@ namespace Examinator.DAO
 			return execQueryListString(cadena);
 		}
 
+        //Devuelve las asignaturas de una clase dada una ID
 		public List<String> getAsignaturasByClase(int idClase)
 		{
 			String cadena = "SELECT Nombre " +
@@ -49,7 +54,7 @@ namespace Examinator.DAO
 			return execQueryListString(cadena);
 		}
 
-
+        //Devuelve el ID de una asignatura dado su nombre
 		public int findAsignaturaByName(String asignatura)
 		{
 			String cadena = "SELECT idAsignatura " +
@@ -58,6 +63,7 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+        //Devuelve el nombre de una asignatura dada su ID
 		public String findAsignaturaById(int idAsignatura)
 		{
 			String cadena = "SELECT Nombre " +
@@ -66,6 +72,7 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
+        //Devuelve la asignatura a la que pertenece un tema
         public String findAsignaturaByTema(int idTema)
         {
             String cadena = "SELECT a.Nombre " +
@@ -74,6 +81,7 @@ namespace Examinator.DAO
             return execQueryString(cadena);
         }
 
+        //Devuelve todos los temas de una asignatura en una lista de strings para añadirlos a un combo
 		public List<String> getTemas(int idAsignatura)
 		{
 			String cadena = "SELECT T.nombre " +

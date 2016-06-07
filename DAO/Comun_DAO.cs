@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Examinator.DAO
 {
+    //Clase de la que heredan los demás DAOs
+    //Contiene todos los métodos que acceden directamente a la base de datos
+
 	public class Comun_DAO
 	{
 		private static String rutaBBDD = "";
@@ -17,6 +20,7 @@ namespace Examinator.DAO
 			conexion = "Data Source=" + rutaBBDD + ";Synchronous=Full;Compress=True;";
 		}
 
+        //Ejecuta una sentencia que no devuelve datos
 		protected void execNonQuery(String cadena)
 		{
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
@@ -29,6 +33,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Ejecuta una sentencia y devuelve un entero
 		protected int execQueryInt(String cadena)
 		{
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
@@ -45,6 +50,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Ejecuta una sentencia y devuelve un string
 		protected String execQueryString(String cadena)
 		{
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
@@ -61,6 +67,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Ejecuta una sentencia para el llenado de un DataGridView
 		protected DataTable execQueryTable(String cadena)
 		{
             using (SQLiteConnection conn = new SQLiteConnection(conexion))
@@ -75,6 +82,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Ejecuta una sentencia y devuelve una lista de enteros
 		protected List<int> execQueryListInt(String cadena)
 		{
             List<int> lista = new List<int>();
@@ -95,6 +103,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Ejecuta una sentencia y devuelve una lista de strings
 		protected List<String> execQueryListString(String cadena)
 		{
 			List<String> lista = new List<String>();
@@ -115,6 +124,7 @@ namespace Examinator.DAO
             }
 		}
 
+        //Devuelve el ID de la última fila insertada
 		protected int findLastID()
 		{
 			String cadena = "SELECT idExamen " + 
@@ -125,6 +135,7 @@ namespace Examinator.DAO
                 return this.execQueryInt(cadena);
 		}
 
+        //Actualiza la tabla con la relación entre las preguntas y respuestas
 		protected void updateRelacionPreguntaRespuesta(Clases.Pregunta pregunta, Clases.Respuesta respuesta)
 		{
 			String cadena = "INSERT " +
@@ -133,6 +144,7 @@ namespace Examinator.DAO
 			this.execNonQuery(cadena);
 		}
 
+        //Actualiza la tabla con la relación entre los exámenes y las notas (No implementado aún)
 		protected void updateRelacionExamenNota(Clases.Examen examen, Clases.Nota nota)
 		{
 			String cadena = "INSERT " +

@@ -8,6 +8,7 @@ namespace Examinator.DAO
 		public Alumno_DAO () : base()
 		{}
 
+        //Inserta un alumno
 		public Clases.Alumno insertAlumno(Clases.Alumno alumno)
 		{
 			String cadena = "INSERT " +
@@ -18,6 +19,7 @@ namespace Examinator.DAO
 			return alumno;
 		}
 
+        //Elimina un alumno por ID
 		public void deleteAlumno(int idAlumno)
 		{
 			String cadena = "DELETE " +
@@ -26,6 +28,7 @@ namespace Examinator.DAO
 			this.execNonQuery(cadena);
 		}
 
+        //Devuelve la ID del alumno por su nombre
 		private int findAlumnoByName(String alumno)
 		{
 			String cadena = "SELECT idAlumno " +
@@ -34,6 +37,7 @@ namespace Examinator.DAO
 			return this.execQueryInt(cadena);
 		}
 
+        //Actualiza el DataGridView de los alumnos dada la ID de una clase
 		public DataTable actualizarTablaAlumnos(int idClase)
 		{
 			String cadena = "SELECT idAlumno AS ID, Apellidos, Nombre " +
