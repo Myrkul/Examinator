@@ -81,6 +81,7 @@ namespace Examinator.Forms
             int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
 
             Clases.Examen examen = examenNotaDAO.getExamen(idExamen);
+            examen.setIdExamen(idExamen);
             Utils.Generar.generarPDF(examen);
         }
 
