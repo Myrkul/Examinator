@@ -117,15 +117,12 @@ namespace Examinator.DAO
 
 		protected int findLastID()
 		{
-			String cadena = "SELECT last_insert_rowid()";
-            using (SQLiteConnection conn = new SQLiteConnection(conexion))
-            {
-                conn.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
-                {
-                    return Convert.ToInt32(cmd.ExecuteScalar());
-                }
-            }
+			String cadena = "SELECT idExamen " + 
+                "FROM Examenes " + 
+                "ORDER BY idExamen DESC " + 
+                "LIMIT 1";
+
+                return this.execQueryInt(cadena);
 		}
 
 		protected void updateRelacionPreguntaRespuesta(Clases.Pregunta pregunta, Clases.Respuesta respuesta)
