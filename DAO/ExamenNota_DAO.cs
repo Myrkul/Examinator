@@ -18,11 +18,11 @@ namespace Examinator.DAO
 			return nota;
 		}
 
-		public Clases.Examen insertExamen(Clases.Examen examen, List<int> preguntas)
+		public Clases.Examen insertExamen(Clases.Examen examen, List<int> preguntas, int numPreguntas, int numRespuestas)
 		{
 			String cadena = "INSERT " +
-				"INTO Examenes (idTema) " +
-				"VALUES ('" + examen.getIdTema() + "')";
+				"INTO Examenes (idTema, numPreguntas, numRespuestas) " +
+				"VALUES ('" + examen.getIdTema() + "', '" + numPreguntas + "', '" + numRespuestas + "')";
 			execNonQuery(cadena);
 			examen.setIdExamen (this.findLastID());
 			this.updateRelacionExamenPreguntas(examen, preguntas);
