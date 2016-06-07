@@ -30,6 +30,7 @@ namespace Examinator.Forms
 
 			List<String> listaClases = claseDAO.getClases();
 
+            //Se carga el combo de clases
 			for (int k = 0; k < listaClases.Count; k++)
 			{
 				comboClase.Items.Add(listaClases[k]);
@@ -45,6 +46,7 @@ namespace Examinator.Forms
         {
             if (tablaExamenes.SelectedRows.Count > 0)
             {
+                //Se actualiza la tabla de preguntas al cambiar la selección de la tabla de exámenes
                 int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
                 tablaPreguntas.DataSource = preguntaRespuestaDAO.actualizarTablaPreguntas(idExamen);
             }
@@ -54,13 +56,14 @@ namespace Examinator.Forms
         {
             try
             {
+                //Se elimina el examen
                 int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
 				String clase = comboClase.SelectedItem.ToString();
 				int idClase = claseDAO.findClaseByName (clase);
                 examenNotaDAO.deleteExamen(idExamen);
 				tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes(idClase);
             }
-            catch (ArgumentOutOfRangeException) { }
+            catch (ArgumentOutOfRangeException) { } //Captura la excepción en caso de que no se haya seleccionado ningun examen
         }
 
         private void btnEliminarPregunta_Click(object sender, EventArgs e)
@@ -73,7 +76,7 @@ namespace Examinator.Forms
                 preguntaRespuestaDAO.deletePregunta(idPregunta);
                 tablaPreguntas.DataSource = preguntaRespuestaDAO.actualizarTablaPreguntas(idExamen);
             }
-            catch (ArgumentOutOfRangeException) { }
+            catch (ArgumentOutOfRangeException) { } //Captura la excepción en caso de que no se haya seleccionado ninguna pregunta
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -87,6 +90,7 @@ namespace Examinator.Forms
 
         private void comboClase_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Actualiza el combo de las asignaturas al cambiar la clase
 			String clase = comboClase.SelectedItem.ToString();
 			int idClase = claseDAO.findClaseByName (clase);
 			List<String> listaAsignaturas = asignaturaDAO.getAsignaturasByClase(idClase);
@@ -99,6 +103,7 @@ namespace Examinator.Forms
         }
 		private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
 		{
+            //Actualiza el combo de los temas al cambiar la asignatura
 			String asignatura = comboAsignatura.SelectedItem.ToString();
 			int idAsignatura = asignaturaDAO.findAsignaturaByName (asignatura);
 			List<String> listaTemas = asignaturaDAO.getTemas(idAsignatura);
@@ -110,6 +115,7 @@ namespace Examinator.Forms
 		}
 		private void comboTema_SelectedIndexChanged(object sender, EventArgs e)
 		{
+            //Actualiza la tabla de exámenes al cambiar de tema
 			String tema = comboTema.SelectedItem.ToString();
 			int idTema = temaDAO.findTemaByName (tema);
 			tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes(idTema);
@@ -121,9 +127,7 @@ namespace Examinator.Forms
 				int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
 				Forms.FPreguntaExamen preguntaExamen = new Forms.FPreguntaExamen (idExamen, tablaPreguntas);
 				preguntaExamen.Show ();
-			} catch(ArgumentOutOfRangeException) {
-				MessageBox.Show ("Debe seleccionar un examen.");
-			}
+            }catch (ArgumentOutOfRangeException) { } //Captura la excepción en caso de que no se haya seleccionado ningun examen
         }
     }
 }

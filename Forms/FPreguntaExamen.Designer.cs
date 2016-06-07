@@ -47,7 +47,6 @@
             this.tablaPreguntas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaPreguntas.Size = new System.Drawing.Size(261, 130);
             this.tablaPreguntas.TabIndex = 10;
-            this.tablaPreguntas.SelectionChanged += new System.EventHandler(this.tablaPreguntas_SelectionChanged);
             // 
             // btnAceptar
             // 

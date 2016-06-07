@@ -9,6 +9,7 @@ namespace Examinator.DAO
 		public ExamenNota_DAO () : base()
 		{}
 
+        //Inserta una nota (No implementado aún)
 		public Clases.Nota insertNota(Clases.Nota nota)
 		{
 			String cadena = "INSERT " +
@@ -18,6 +19,7 @@ namespace Examinator.DAO
 			return nota;
 		}
 
+        //Inserta un examen
 		public Clases.Examen insertExamen(Clases.Examen examen, List<int> preguntas, int numPreguntas, int numRespuestas)
 		{
 			String cadena = "INSERT " +
@@ -29,6 +31,7 @@ namespace Examinator.DAO
 			return examen;
 		}
 
+        //Inserta una pregunta en un examen ya existente
 		public void insertPreguntaEnExamen(int idExamen, int idPregunta)
 		{
 			String cadena = "INSERT " +
@@ -48,6 +51,7 @@ namespace Examinator.DAO
 			execNonQuery(cadena);
 		}
 
+        //Elimina un examen por ID
         public void deleteExamen(int idExamen)
         {
             String cadena = "DELETE " +
@@ -56,6 +60,7 @@ namespace Examinator.DAO
             this.execNonQuery(cadena);
         }
 
+        //Devuelve un examen a partir de una ID
         public Clases.Examen getExamen(int idExamen)
         {
             Clases.Examen examen;
@@ -82,6 +87,7 @@ namespace Examinator.DAO
             return examen;
         }
 
+        //Actualiza el DataGridView de los exámenes de un tema
 		public DataTable actualizarTablaExamenes(int idTema)
         {
             String cadena = "SELECT e.idExamen AS ID, t.Nombre " +
@@ -91,6 +97,7 @@ namespace Examinator.DAO
             return execQueryTable(cadena);
         }
 
+        //Actualiza la tabla con la relación entre los exámenes y las preguntas
 		private void updateRelacionExamenPreguntas(Clases.Examen examen, List<int> preguntas)
 		{
 			for (int k = 0; k < preguntas.Count; k++) {

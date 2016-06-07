@@ -10,6 +10,8 @@ using System.IO;
 
 namespace Examinator.Utils
 {
+    //Clase auxiliar para el generado de PDFs
+
     class Generar
     {
         public static void generarPDF(Clases.Examen examen)
@@ -26,6 +28,7 @@ namespace Examinator.Utils
             Document doc = new Document(PageSize.LETTER);
             PdfWriter writer = null;
 
+            //Se pregunta por la ruta de guardado
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
                 dialog.Filter = "Archivos PDF (*.pdf)|*.pdf";
@@ -39,12 +42,15 @@ namespace Examinator.Utils
                 }
             }
 
+            //Título del PDF
             doc.AddTitle("Examen tema: " + nombreTema);
 
             doc.Open();
 
+            //Fuente por defecto
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
+            //Cabecera del examen
             doc.Add(new Paragraph(nombreAsignatura));
             doc.Add(new Paragraph("Examen tema: " + nombreTema));
             doc.Add(Chunk.NEWLINE);
@@ -53,37 +59,37 @@ namespace Examinator.Utils
 
             List<String> listaEnunciados = new List<String>();
 
-            for (int k = 0; k < listaPreguntas.Count; k++)
-            {
-                listaEnunciados.Add(preguntaRespuestaDAO.findPreguntaById(listaPreguntas[k]));
-            }
-            PdfPTable tblPrueba = new PdfPTable(2);
-            tblPrueba.WidthPercentage = 100;
+            //Se crea la tabla donde se pintarán las preguntas y las respuestas
+
+            PdfPTable tblPrueba = new PdfPTable(2); //Tabla con dos columnas
 
             PdfPCell clPreguntas = new PdfPCell();
-            clPreguntas.BorderWidth = 1;
-            clPreguntas.BorderWidthBottom = 0.75f;
 
             PdfPCell clRespuestas = new PdfPCell();
-            clRespuestas.BorderWidth = 1;
-            clRespuestas.BorderWidthBottom = 0.75f;
 
-            tblPrueba.AddCell(clPreguntas);
-            tblPrueba.AddCell(clRespuestas);
+            for (int k = 0; k < listaPreguntas.Count; k++)
+            {
+                //Se guardan los enunciados de las preguntas
+                listaEnunciados.Add(preguntaRespuestaDAO.findPreguntaById(listaPreguntas[k]));
+            }
 
             Random rng = new Random();
             for (int k = 0; k < listaPreguntas.Count; k++)
             {
+                //Se añaden los enunciados a la celda de las preguntas
                 clPreguntas = new PdfPCell(new Phrase(listaEnunciados[k], _standardFont));
                 clPreguntas.BorderWidth = 0;
                 tblPrueba.AddCell(clPreguntas);
-                List<int> listaRespuestas = preguntaRespuestaDAO.getRespuestasPregunta(listaPreguntas[k], numRespuestas);
 
+                //Se guardan las respuestas de la pregunta en orden aleatorio
+                List<int> listaRespuestas = preguntaRespuestaDAO.getRespuestasPregunta(listaPreguntas[k], numRespuestas);
                 barajar(listaRespuestas, rng);
 
+                //Se añaden las respuestas a la celda como una sola cadena
                 String cadenaRespuestas = "";
                 for (int i = 0; i < listaRespuestas.Count; i++)
                 {
+                    
                     cadenaRespuestas += preguntaRespuestaDAO.findRespuestaById(listaRespuestas[i]) + "\n\n\n";
                 }
                 clRespuestas = new PdfPCell(new Phrase(cadenaRespuestas, _standardFont));
@@ -92,11 +98,11 @@ namespace Examinator.Utils
             }
 
             doc.Add(tblPrueba);
-
             doc.Close();
             writer.Close();
         }
 
+        //Método usado para dar aleatoriedad a las respuestas de cada pregunta
         private static void barajar(List<int> list, Random rng)
         {
             int n = list.Count;

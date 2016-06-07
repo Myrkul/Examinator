@@ -23,8 +23,10 @@ namespace Examinator.Forms
 			temaDAO = new DAO.Tema_DAO();
             claseDAO = new DAO.Clase_DAO();
 
+            //Se carga la tabla de asignaturas
 			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
 
+            //Se carga el combo de clases
             List<String> listaClases = claseDAO.getClases();
 
             for (int k = 0; k < listaClases.Count; k++)
@@ -53,6 +55,7 @@ namespace Examinator.Forms
             String nombreClase = comboClase.SelectedItem.ToString();
             int idClase = claseDAO.findClaseByName(nombreClase);
 
+            //Se inserta una asignatura
             Clases.Asignatura asignatura = new Clases.Asignatura(tNombreAsig.Text, idClase);
 			asignatura = asignaturaDAO.insertAsignatura(asignatura);
 			tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig();
@@ -61,23 +64,24 @@ namespace Examinator.Forms
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 			try{
+                //Se elimina una asignatura
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
 				asignaturaDAO.deleteAsignatura (idAsignatura);
 				tablaAsignaturas.DataSource = asignaturaDAO.actualizarTablaAsig ();
 			}
-			catch(ArgumentOutOfRangeException){}
+			catch(ArgumentOutOfRangeException){} //Captura la excepción en caso de que no se haya seleccionado ninguna asignatura
         }
 
         private void btnEliminarTema_Click(object sender, EventArgs e)
         {
 			try{
+                //Se elimina un tema
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
 				int idTema = Convert.ToInt32(tablaTemas.SelectedRows[0].Cells[0].Value);
-
 				temaDAO.deleteTema (idTema);
 				tablaTemas.DataSource = temaDAO.actualizarTablaTemas (idAsignatura);
 			}
-			catch(ArgumentOutOfRangeException){}
+            catch (ArgumentOutOfRangeException) { }//Captura la excepción en caso de que no se haya seleccionado ningun tema
 
         }
 
@@ -88,6 +92,7 @@ namespace Examinator.Forms
                 MessageBox.Show("El nombre no puede ir en blanco.");
                 return;
             }
+            //Se añade un tema
 			Clases.Tema tema = new Clases.Tema(tNombreTema.Text, Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value));
 			tema = temaDAO.insertTema(tema);
 			tablaTemas.DataSource = temaDAO.actualizarTablaTemas(tema.getIdAsig());
@@ -97,6 +102,7 @@ namespace Examinator.Forms
         {
             if (tablaAsignaturas.SelectedRows.Count > 0)
             {
+                //Se actualiza la tabla de temas al cambiar la selección de la tabla de asignaturas
 				int idAsignatura = Convert.ToInt32(tablaAsignaturas.SelectedRows[0].Cells[0].Value);
 				tablaTemas.DataSource = temaDAO.actualizarTablaTemas(idAsignatura);
             }

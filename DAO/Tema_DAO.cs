@@ -9,6 +9,7 @@ namespace Examinator.DAO
 		public Tema_DAO () : base()
 		{}
 
+        //Inserta un tema
 		public Clases.Tema insertTema(Clases.Tema tema)
 		{
 			String cadena = "INSERT " +
@@ -19,6 +20,7 @@ namespace Examinator.DAO
 			return tema;
 		}
 
+        //Elimina un tema
 		public void deleteTema(int idTema)
 		{
 			String cadena = "DELETE " +
@@ -27,6 +29,7 @@ namespace Examinator.DAO
 			this.execNonQuery(cadena);
 		}
 
+        //Actualiza el DataGridView de los temas de una asignatura
 		public DataTable actualizarTablaTemas(int idAsig)
 		{
 			String cadena = "SELECT idTema AS ID, Nombre " + 
@@ -35,6 +38,7 @@ namespace Examinator.DAO
 			return execQueryTable(cadena);
 		}
 
+        //Devuelve la ID de un tema dado su nombre
 		public int findTemaByName(String tema)
 		{
 			String cadena = "SELECT idTema " +
@@ -43,6 +47,7 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+        //Devuelve el nombre de un tema dada su ID
 		public String findTemaById(int id)
 		{
 			String cadena = "SELECT Nombre " +
@@ -51,6 +56,7 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
+        //Devuelve la ID del tema al que pertenece un examen
 		public int findTemaByExamen(int idExamen)
 		{
 			String cadena = "SELECT idTema " +

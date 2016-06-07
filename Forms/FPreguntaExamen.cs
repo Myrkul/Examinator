@@ -24,10 +24,15 @@ namespace Examinator.Forms
 			examenNotaDAO = new DAO.ExamenNota_DAO ();
 			preguntaRespuestaDAO = new DAO.PreguntaRespuesta_DAO ();
 			temaDAO = new DAO.Tema_DAO ();
+
+            //Guarda el DataGridView que se le pasa por parámetro
+            //Para poder actualizar la tabla de preguntas del form anterior
+            //Cuando se añada una nueva
 			this.tablaPreguntasExamen = tablaPreguntasExamen;
 
 			InitializeComponent();
 
+            //Inicializa la tabla de preguntas de ese tema
 			this.idExamen = idExamen;
 			idTema = temaDAO.findTemaByExamen(this.idExamen);
 			tablaPreguntas.DataSource = preguntaRespuestaDAO.getPreguntasByTemaDataTable (this.idTema);
@@ -37,11 +42,8 @@ namespace Examinator.Forms
         {
 			try {
 				int idPregunta = Convert.ToInt32(tablaPreguntas.SelectedRows [0].Cells [0].Value);
-
 				examenNotaDAO.insertPreguntaEnExamen (idExamen, idPregunta);
-
 				this.tablaPreguntasExamen.DataSource = preguntaRespuestaDAO.actualizarTablaPreguntas(idExamen);
-
 			} catch(ArgumentOutOfRangeException) {
 				MessageBox.Show ("Debe seleccionar una pregunta.");
 			}
@@ -50,11 +52,6 @@ namespace Examinator.Forms
         private void btnCancelar_Click(object sender, EventArgs e)
         {
 			this.Dispose ();
-        }
-
-        private void tablaPreguntas_SelectionChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

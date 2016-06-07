@@ -29,6 +29,7 @@ namespace Examinator.Forms
 
             List<String> listaClases = claseDAO.getClases();
 
+            //Se carga el combo de clases
             for (int k = 0; k < listaClases.Count; k++)
             {
                 comboClase.Items.Add(listaClases[k]);
@@ -37,6 +38,7 @@ namespace Examinator.Forms
 
         private void checkFinal_CheckedChanged(object sender, EventArgs e)
         {
+            //Aún no implementado
             CheckBox final = (CheckBox)sender;
 
             if (final.Checked)
@@ -59,6 +61,7 @@ namespace Examinator.Forms
             List<int> listaPreguntasTotales = new List<int>();
             List<int> listaPreguntasEscogidas = new List<int>();
 
+            //Control de entrada
             if (comboAsignatura.SelectedIndex == -1)
             {
                 MessageBox.Show("Debes seleccionar la asignatura.");
@@ -124,6 +127,8 @@ namespace Examinator.Forms
                 MessageBox.Show("No hay tantas preguntas guardadas.");
                 return;
             }
+
+            //Se randomiza el orden de las respuestas
             Random rnd = new Random();
 			int k = 0;
 			do {
@@ -133,6 +138,7 @@ namespace Examinator.Forms
 					k++;
 				}
 			} while(numPreguntas > k);
+            //Se inserta el examen y se genera el PDF
 			Clases.Examen examen = new Clases.Examen(temaDAO.findTemaByName(tema), numPreguntas, numRespuestas);
 			examen = examenNotaDAO.insertExamen(examen, listaPreguntasEscogidas, numPreguntas, numRespuestas);
             Utils.Generar.generarPDF(examen);
@@ -141,6 +147,7 @@ namespace Examinator.Forms
 
         private void comboClase_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Actualiza el combo de las asignaturas al cambiar la clase
             String clase = comboClase.SelectedItem.ToString();
             int idClase = claseDAO.findClaseByName(clase);
             List<String> listaAsignaturas = asignaturaDAO.getAsignaturasByClase(idClase);
@@ -153,6 +160,7 @@ namespace Examinator.Forms
         }
         private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Actualiza el combo de los temas al cambiar la asignatura
             String asignatura = comboAsignatura.SelectedItem.ToString();
             int idAsignatura = asignaturaDAO.findAsignaturaByName(asignatura);
             List<String> listaTemas = asignaturaDAO.getTemas(idAsignatura);

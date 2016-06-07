@@ -17,8 +17,9 @@ namespace Examinator
         {
             InitializeComponent();
 			String directorio = Directory.GetCurrentDirectory ();
+
+            //Carga la base de datos
 			bool existe = File.Exists (directorio + "\\examinator.db3");
-			Console.WriteLine (directorio);
 			if (!existe) {
 				MessageBox.Show ("Base de datos no encontrada.\nSeleccione el archivo.");
 				using (OpenFileDialog dialog = new OpenFileDialog())

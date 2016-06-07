@@ -28,6 +28,7 @@ namespace Examinator.Forms
 			preguntaDAO = new DAO.PreguntaRespuesta_DAO();
 			temaDAO = new DAO.Tema_DAO();
 
+            //Se carga el combo de asignaturas
 			List<String> listaAsig = asignaturaDAO.getAsignaturas();
 
             for (int k = 0; k < listaAsig.Count; k++)
@@ -137,6 +138,7 @@ namespace Examinator.Forms
 					correcta = k+1;
                 }
             }
+            //Se inserta una pregunta y sus respuestas
 			Clases.Pregunta pregunta = new Clases.Pregunta(tPregunta.Text, correcta, temaDAO.findTemaByName(comboTema.SelectedItem.ToString()));
             List<Clases.Respuesta> respuestas = new List<Clases.Respuesta>();
 
@@ -151,6 +153,7 @@ namespace Examinator.Forms
 
         private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Actualiza el combo de los temas al cambiar la asignatura
             comboTema.Items.Clear();
 			List<String> listaTemas = new List<String>();
 			int idAsignatura = asignaturaDAO.findAsignaturaByName (this.comboAsignatura.SelectedItem.ToString());

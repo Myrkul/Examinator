@@ -9,6 +9,7 @@ namespace Examinator.DAO
 		public PreguntaRespuesta_DAO () : base()
 		{}
 
+        //Inserta una pregunta
 		public Clases.Pregunta insertPregunta(Clases.Pregunta pregunta, List<Clases.Respuesta> respuestas)
 		{
 			String enunciado = pregunta.getEnunciado();
@@ -31,6 +32,7 @@ namespace Examinator.DAO
 			return pregunta;
 		}
 
+        //Inserta una respuesta (Usado solo por el método anterior)
 		private void insertRespuesta(Clases.Respuesta respuesta)
 		{
 			String cadena = "INSERT " +
@@ -39,6 +41,7 @@ namespace Examinator.DAO
 			this.execNonQuery(cadena);
 		}
 
+        //Devuelve una lista de preguntas de un tema que tengan más de un número de respuestas
 		public List<int> getPreguntas(int idTema, int numRespuestas)
 		{
 			String cadena = "SELECT p.idPregunta " +
@@ -49,6 +52,7 @@ namespace Examinator.DAO
 			return execQueryListInt(cadena);
 		}
 
+        //Actualiza el DataGridView de las preguntas de un tema
 		public DataTable getPreguntasByTemaDataTable(int idTema)
 		{
 			String cadena = "SELECT idPregunta AS ID, Enunciado " +
@@ -57,6 +61,7 @@ namespace Examinator.DAO
 			return execQueryTable(cadena);
 		}
 
+        //Devuelve la ID de la respuesta dado su texto
 		private int findRespuestaByTexto(String respuesta)
 		{
 			String cadena = "SELECT idRespuesta " +
@@ -65,6 +70,7 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+        //Devuelve el texto de una respuesta dada su ID
 		public String findRespuestaById(int id)
 		{
 			String cadena = "SELECT Texto " +
@@ -73,6 +79,7 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
+        //Elimina una pregunta (Y sus respuestas)
         public void deletePregunta(int idPregunta)
         {
 
@@ -101,6 +108,7 @@ namespace Examinator.DAO
             }
         }
 
+        //Devuelve las respuestas de una pregunta en orden aleatorio
 		public List<int> getRespuestasPregunta(int id, int numRespuestas)
 		{
 			String cadena = "SELECT idCorrecta" +
@@ -131,6 +139,7 @@ namespace Examinator.DAO
 			return listaFinalRespuestas;
 		}
 
+        //Actualiza el DataGridView de las preguntas de un examen
         public DataTable actualizarTablaPreguntas(int idExamen)
         {
             String cadena = "SELECT p.idPregunta AS ID, p.Enunciado " +
@@ -139,6 +148,7 @@ namespace Examinator.DAO
             return execQueryTable(cadena);
         }
 
+        //Devuelve la ID de una pregunta dado su texto
 		private int findPreguntaByEnunciado(String pregunta)
 		{
 			String cadena = "SELECT idPregunta " +
@@ -147,6 +157,7 @@ namespace Examinator.DAO
 			return execQueryInt(cadena);
 		}
 
+        //Devuelve el texto de una pregunta dada su ID
 		public String findPreguntaById(int id)
 		{
 			String cadena = "SELECT Enunciado " +
@@ -155,6 +166,7 @@ namespace Examinator.DAO
 			return execQueryString(cadena);
 		}
 
+        //Devuelve las preguntas de un examen
 		public List<int> getPreguntasExamen(int idExamen)
 		{
 			String cadena = "SELECT p.idPregunta " +
