@@ -14,6 +14,9 @@ namespace Examinator.Forms
     {
         private DAO.ExamenNota_DAO examenNotaDAO;
         private DAO.PreguntaRespuesta_DAO preguntaRespuestaDAO;
+		private DAO.Clase_DAO claseDAO;
+		private DAO.Asignatura_DAO asignaturaDAO;
+		private DAO.Tema_DAO temaDAO;
 
         public FExamenes()
         {
@@ -21,9 +24,16 @@ namespace Examinator.Forms
 
             examenNotaDAO = new DAO.ExamenNota_DAO();
             preguntaRespuestaDAO = new DAO.PreguntaRespuesta_DAO();
+			claseDAO = new DAO.Clase_DAO ();
+			asignaturaDAO = new DAO.Asignatura_DAO ();
+			temaDAO = new DAO.Tema_DAO ();
 
-            tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes();
+			List<String> listaClases = claseDAO.getClases();
 
+			for (int k = 0; k < listaClases.Count; k++)
+			{
+				comboClase.Items.Add(listaClases[k]);
+			}
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -45,8 +55,10 @@ namespace Examinator.Forms
             try
             {
                 int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
+				String clase = comboClase.SelectedItem.ToString();
+				int idClase = claseDAO.findClaseByName (clase);
                 examenNotaDAO.deleteExamen(idExamen);
-                tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes();
+				tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes(idClase);
             }
             catch (ArgumentOutOfRangeException) { }
         }
@@ -74,12 +86,43 @@ namespace Examinator.Forms
 
         private void comboClase_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+			String clase = comboClase.SelectedItem.ToString();
+			int idClase = claseDAO.findClaseByName (clase);
+			List<String> listaAsignaturas = asignaturaDAO.getAsignaturasByClase(idClase);
+			comboAsignatura.Items.Clear ();
+			for (int k = 0; k < listaAsignaturas.Count; k++)
+			{
+				comboAsignatura.Items.Add(listaAsignaturas[k]);
+			}
+			comboTema.Items.Clear ();
         }
+		private void comboAsignatura_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			String asignatura = comboAsignatura.SelectedItem.ToString();
+			int idAsignatura = asignaturaDAO.findAsignaturaByName (asignatura);
+			List<String> listaTemas = asignaturaDAO.getTemas(idAsignatura);
+			comboTema.Items.Clear ();
+			for (int k = 0; k < listaTemas.Count; k++)
+			{
+				comboTema.Items.Add(listaTemas[k]);
+			}
+		}
+		private void comboTema_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			String tema = comboTema.SelectedItem.ToString();
+			int idTema = temaDAO.findTemaByName (tema);
+			tablaExamenes.DataSource = examenNotaDAO.actualizarTablaExamenes(idTema);
+		}
 
         private void btnAddPregunta_Click(object sender, EventArgs e)
         {
-
+			try {
+				int idExamen = Convert.ToInt32(tablaExamenes.SelectedRows[0].Cells[0].Value);
+				Forms.FPreguntaExamen preguntaExamen = new Forms.FPreguntaExamen (idExamen);
+				preguntaExamen.Show ();
+			} catch(ArgumentOutOfRangeException) {
+				MessageBox.Show ("Debe seleccionar un examen.");
+			}
         }
     }
 }

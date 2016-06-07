@@ -38,7 +38,11 @@
             this.btnEliminarPregunta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.comboClase = new System.Windows.Forms.ComboBox();
+			this.comboAsignatura = new System.Windows.Forms.ComboBox();
+			this.comboTema = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaExamenes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaPreguntas)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +64,7 @@
             this.tablaExamenes.AllowUserToOrderColumns = true;
             this.tablaExamenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.tablaExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaExamenes.Location = new System.Drawing.Point(12, 76);
+            this.tablaExamenes.Location = new System.Drawing.Point(12, 130);
             this.tablaExamenes.Name = "tablaExamenes";
             this.tablaExamenes.ReadOnly = true;
             this.tablaExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -94,7 +98,7 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(237, 245);
+            this.btnImprimir.Location = new System.Drawing.Point(237, 300);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 11;
@@ -114,7 +118,7 @@
             // 
             // btnEliminarExamen
             // 
-            this.btnEliminarExamen.Location = new System.Drawing.Point(156, 245);
+            this.btnEliminarExamen.Location = new System.Drawing.Point(156, 300);
             this.btnEliminarExamen.Name = "btnEliminarExamen";
             this.btnEliminarExamen.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarExamen.TabIndex = 13;
@@ -150,6 +154,27 @@
             this.comboClase.Size = new System.Drawing.Size(258, 21);
             this.comboClase.TabIndex = 16;
             this.comboClase.SelectedIndexChanged += new System.EventHandler(this.comboClase_SelectedIndexChanged);
+			this.comboClase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			// 
+			// comboAsignatura
+			// 
+			this.comboAsignatura.FormattingEnabled = true;
+			this.comboAsignatura.Location = new System.Drawing.Point(54, 66);
+			this.comboAsignatura.Name = "comboClase";
+			this.comboAsignatura.Size = new System.Drawing.Size(258, 21);
+			this.comboAsignatura.TabIndex = 16;
+			this.comboAsignatura.SelectedIndexChanged += new System.EventHandler(this.comboAsignatura_SelectedIndexChanged);
+			this.comboAsignatura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			// 
+			// comboTema
+			// 
+			this.comboTema.FormattingEnabled = true;
+			this.comboTema.Location = new System.Drawing.Point(54, 96);
+			this.comboTema.Name = "comboClase";
+			this.comboTema.Size = new System.Drawing.Size(258, 21);
+			this.comboTema.TabIndex = 16;
+			this.comboTema.SelectedIndexChanged += new System.EventHandler(this.comboTema_SelectedIndexChanged);
+			this.comboTema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // label3
             // 
@@ -159,6 +184,24 @@
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 17;
             this.label3.Text = "Clase:";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(12, 69);
+			this.label4.Name = "label3";
+			this.label4.Size = new System.Drawing.Size(36, 13);
+			this.label4.TabIndex = 17;
+			this.label4.Text = "Asig.:";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(12, 99);
+			this.label5.Name = "label3";
+			this.label5.Size = new System.Drawing.Size(36, 13);
+			this.label5.TabIndex = 17;
+			this.label5.Text = "Tema:";
             // 
             // FExamenes
             // 
@@ -166,7 +209,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 335);
             this.Controls.Add(this.label3);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label5);
             this.Controls.Add(this.comboClase);
+			this.Controls.Add(this.comboAsignatura);
+			this.Controls.Add(this.comboTema);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminarPregunta);
             this.Controls.Add(this.btnEliminarExamen);
@@ -197,6 +244,10 @@
         private System.Windows.Forms.Button btnEliminarPregunta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox comboClase;
+		private System.Windows.Forms.ComboBox comboAsignatura;
+		private System.Windows.Forms.ComboBox comboTema;
         private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
     }
 }

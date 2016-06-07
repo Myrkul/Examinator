@@ -153,7 +153,8 @@ namespace Examinator.Forms
         {
             comboTema.Items.Clear();
 			List<String> listaTemas = new List<String>();
-			listaTemas = asignaturaDAO.cargarAsignaturas(comboAsignatura.GetItemText(this.comboAsignatura.SelectedItem));
+			int idAsignatura = asignaturaDAO.findAsignaturaByName (this.comboAsignatura.SelectedItem.ToString());
+			listaTemas = asignaturaDAO.getTemas(idAsignatura);
 			
 			for(int k=0; k< listaTemas.Count;k++)
 			{

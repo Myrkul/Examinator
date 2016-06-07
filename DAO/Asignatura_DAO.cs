@@ -41,7 +41,16 @@ namespace Examinator.DAO
 			return execQueryListString(cadena);
 		}
 
-		private int findAsignaturaByName(String asignatura)
+		public List<String> getAsignaturasByClase(int idClase)
+		{
+			String cadena = "SELECT Nombre " +
+				"FROM Asignaturas " +
+				"WHERE idClase IS " + idClase;
+			return execQueryListString(cadena);
+		}
+
+
+		public int findAsignaturaByName(String asignatura)
 		{
 			String cadena = "SELECT idAsignatura " +
 				"FROM Asignaturas " +
@@ -65,13 +74,12 @@ namespace Examinator.DAO
             return execQueryString(cadena);
         }
 
-		public List<String> cargarAsignaturas(String nombreAsig)
+		public List<String> getTemas(int idAsignatura)
 		{
-			int asignaturaActual = this.findAsignaturaByName(nombreAsig);
 			String cadena = "SELECT T.nombre " +
 				"FROM Asignaturas A " +
 				"INNER JOIN Temas T ON A.idAsignatura = T.idAsignatura " +
-				"WHERE T.idAsignatura IS " + asignaturaActual;
+				"WHERE T.idAsignatura IS " + idAsignatura;
 			return execQueryListString(cadena);
 		}
 	}

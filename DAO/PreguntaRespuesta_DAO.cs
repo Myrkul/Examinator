@@ -49,6 +49,14 @@ namespace Examinator.DAO
 			return execQueryListInt(cadena);
 		}
 
+		public DataTable getPreguntasByTemaDataTable(int idTema)
+		{
+			String cadena = "SELECT idPregunta AS ID, Enunciado " +
+				"FROM Preguntas " + 
+				"WHERE idTema IS " + idTema;
+			return execQueryTable(cadena);
+		}
+
 		private int findRespuestaByTexto(String respuesta)
 		{
 			String cadena = "SELECT idRespuesta " +

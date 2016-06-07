@@ -29,6 +29,14 @@ namespace Examinator.DAO
 			return examen;
 		}
 
+		public void insertPreguntaEnExamen(int idExamen, int idPregunta)
+		{
+			String cadena = "INSERT " +
+			                "INTO Examenes_Preguntas " +
+			                "VALUES ('" + idExamen + "',' " + idPregunta + "')";
+			execNonQuery(cadena);
+		}
+
         public void deleteExamen(int idExamen)
         {
             String cadena = "DELETE " +
@@ -63,10 +71,12 @@ namespace Examinator.DAO
             return examen;
         }
 
-        public DataTable actualizarTablaExamenes()
+		public DataTable actualizarTablaExamenes(int idTema)
         {
             String cadena = "SELECT e.idExamen AS ID, t.Nombre " +
-                "FROM Examenes e INNER JOIN Temas t ON e.idTema = t.idTema";
+                "FROM Examenes e INNER JOIN Temas t ON e.idTema = t.idTema " +
+				"WHERE e.idTema IS " + idTema;
+			Console.WriteLine (cadena);
             return execQueryTable(cadena);
         }
 
