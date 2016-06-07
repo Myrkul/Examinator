@@ -9,76 +9,123 @@ namespace Examinator.DAO
 	public class Comun_DAO
 	{
 		private static String rutaBBDD = "";
-		private static SQLiteConnection conn;
+        private String conexion;
 
 		public Comun_DAO ()
 		{
 			rutaBBDD = Directory.GetCurrentDirectory () + "\\examinator.db3";
-			String conexion = "Data Source=" + rutaBBDD + ";Synchronous=Full;Compress=True;";
-			Console.WriteLine (conexion);
-			conn = new SQLiteConnection(conexion);
-			conn.Open();
+			conexion = "Data Source=" + rutaBBDD + ";Synchronous=Full;Compress=True;";
 		}
 
 		protected void execNonQuery(String cadena)
 		{
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			cmd.ExecuteNonQuery();
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
 		}
 
 		protected int execQueryInt(String cadena)
 		{
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			SQLiteDataReader rdr = cmd.ExecuteReader();
-			rdr.Read();
-			return rdr.GetInt32(0);
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        rdr.Read();
+                        return rdr.GetInt32(0);
+                    }
+                }
+            }
 		}
 
 		protected String execQueryString(String cadena)
 		{
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			SQLiteDataReader rdr = cmd.ExecuteReader();
-			rdr.Read();
-			return rdr.GetString(0);
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        rdr.Read();
+                        return rdr.GetString(0);
+                    }
+                }
+            }
 		}
 
 		protected DataTable execQueryTable(String cadena)
 		{
-			SQLiteDataAdapter da = new SQLiteDataAdapter(cadena, conn);
-			DataSet ds = new DataSet();
-			da.Fill(ds);
-			return ds.Tables[0];
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteDataAdapter da = new SQLiteDataAdapter(cadena, conn))
+                {
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds.Tables[0];
+                }
+            }
 		}
 
 		protected List<int> execQueryListInt(String cadena)
 		{
-			List<int> lista = new List<int>();
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			SQLiteDataReader rdr = cmd.ExecuteReader();
-			while (rdr.Read())
-			{
-				lista.Add(rdr.GetInt32(0));
-			}
-			return lista;
+            List<int> lista = new List<int>();
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            lista.Add(rdr.GetInt32(0));
+                        }
+                        return lista;
+                    }
+                }
+            }
 		}
 
 		protected List<String> execQueryListString(String cadena)
 		{
 			List<String> lista = new List<String>();
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			SQLiteDataReader rdr = cmd.ExecuteReader();
-			while (rdr.Read())
-			{
-				lista.Add(rdr.GetString(0));
-			}
-			return lista;
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            lista.Add(rdr.GetString(0));
+                        }
+                        return lista;
+                    }
+                }
+            }
 		}
 
 		protected int findLastID()
 		{
 			String cadena = "SELECT last_insert_rowid()";
-			SQLiteCommand cmd = new SQLiteCommand(cadena, conn);
-			return Convert.ToInt32(cmd.ExecuteScalar ());
+            using (SQLiteConnection conn = new SQLiteConnection(conexion))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cadena, conn))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
 		}
 
 		protected void updateRelacionPreguntaRespuesta(Clases.Pregunta pregunta, Clases.Respuesta respuesta)
