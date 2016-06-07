@@ -40,8 +40,6 @@ namespace Examinator.Forms
 
 				examenNotaDAO.insertPreguntaEnExamen (idExamen, idPregunta);
 
-				MessageBox.Show("Añadida.");
-
 				this.tablaPreguntasExamen.DataSource = preguntaRespuestaDAO.actualizarTablaPreguntas(idExamen);
 
 			} catch(ArgumentOutOfRangeException) {

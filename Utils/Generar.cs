@@ -28,7 +28,7 @@ namespace Examinator.Utils
 
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
-                dialog.Filter = "pdf files (*.pdf)|*.pdf";
+                dialog.Filter = "Archivos PDF (*.pdf)|*.pdf";
                 dialog.FilterIndex = 2;
                 dialog.RestoreDirectory = true;
 
