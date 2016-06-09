@@ -214,6 +214,8 @@
             this.Controls.Add(this.tablaClases);
             this.Name = "FClases";
             this.Text = "Clases";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             ((System.ComponentModel.ISupportInitialize)(this.tablaClases)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaAlumnos)).EndInit();
             this.ResumeLayout(false);

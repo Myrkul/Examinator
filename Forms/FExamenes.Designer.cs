@@ -225,6 +225,8 @@
             this.Controls.Add(this.tablaExamenes);
             this.Name = "FExamenes";
             this.Text = "Exámenes";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             ((System.ComponentModel.ISupportInitialize)(this.tablaExamenes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaPreguntas)).EndInit();
             this.ResumeLayout(false);

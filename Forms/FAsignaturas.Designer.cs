@@ -217,6 +217,8 @@
             this.Controls.Add(this.tablaAsignaturas);
             this.Name = "FAsignaturas";
             this.Text = "Gestionar Asignaturas";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             ((System.ComponentModel.ISupportInitialize)(this.tablaAsignaturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTemas)).EndInit();
             this.ResumeLayout(false);

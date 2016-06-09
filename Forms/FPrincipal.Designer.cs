@@ -134,6 +134,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FPrincipal";
             this.Text = "Examinator";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -174,6 +174,8 @@
             this.Controls.Add(this.label1);
             this.Name = "FAddPreguntas";
             this.Text = "Añadir Pregunta";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ResumeLayout(false);
             this.PerformLayout();
 

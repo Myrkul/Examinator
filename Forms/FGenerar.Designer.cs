@@ -256,6 +256,8 @@
             this.Controls.Add(this.label1);
             this.Name = "FGenerar";
             this.Text = "Generar Examen";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ResumeLayout(false);
             this.PerformLayout();
 

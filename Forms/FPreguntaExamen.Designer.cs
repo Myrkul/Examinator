@@ -78,6 +78,8 @@
             this.Controls.Add(this.tablaPreguntas);
             this.Name = "FPreguntaExamen";
             this.Text = "Añadir Pregunta";
+			this.MaximizeBox = false;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             ((System.ComponentModel.ISupportInitialize)(this.tablaPreguntas)).EndInit();
             this.ResumeLayout(false);
 
